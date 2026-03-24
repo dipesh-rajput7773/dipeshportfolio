@@ -55,7 +55,7 @@ export default function Skills() {
       skills: [
         { name: 'E-commerce', icon: <TrendingUp size={24} /> },
         { name: 'Digital Products', icon: <Smartphone size={24} /> },
-        { name: 'Git', icon: <GitBranch size={24} /> },
+        { name: 'Automation (n8n, Playwright)', icon: <Zap size={24} /> },
       ],
     },
   ];

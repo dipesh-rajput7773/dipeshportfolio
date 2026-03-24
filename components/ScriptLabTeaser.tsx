@@ -39,16 +39,6 @@ export default function ScriptLabTeaser() {
             Stop telling. Start showing. Experience my custom-built AI engine designed to generate high-retention cinematic scripts in seconds.
           </p>
           
-          <div className="grid grid-cols-2 gap-6 pt-4">
-            <div className="space-y-2">
-              <h4 className="text-2xl font-bold text-white tracking-tight">Gemini Pro</h4>
-              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500">Ai Integration</p>
-            </div>
-            <div className="space-y-2">
-              <h4 className="text-2xl font-bold text-white tracking-tight">Next.js</h4>
-              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500">Architecture</p>
-            </div>
-          </div>
         </motion.div>
 
         <motion.div

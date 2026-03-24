@@ -18,6 +18,9 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: 'thedipverse | I Build. I Think. I Create.',
   description: 'MERN Developer | Cinematic Storyteller | Entrepreneur',
+  verification: {
+    google: 'Bcm0NF1xXrh9SZ3Olc6-XM-BWLRvA0w0IMe7BBx5SMg',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
