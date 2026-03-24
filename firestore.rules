@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: script_usage
+    // Document ID: userId
+    // Fields:
+    //   - count: integer (required, 0-2) - number of scripts generated today
+    //   - lastReset: timestamp (required) - last time the counter was reset
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isValidUsage(data) {
+      return data.count is int && 
+             data.count >= 0 && 
+             data.count <= 2 &&
+             data.lastReset is timestamp;
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /script_usage/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUsage(request.resource.data);
+      allow update: if isOwner(userId) && isValidUsage(request.resource.data);
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
