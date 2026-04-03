@@ -5,8 +5,12 @@ import { Menu, X, Instagram, Linkedin, Mail } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Navbar() {
+  const { data: session, status } = useSession();
+  const isLoaded = status !== 'loading';
+  const isSignedIn = !!session;
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -17,11 +21,19 @@ export default function Navbar() {
   }, []);
 
   const pathname = usePathname();
+  
+  // Define where Navbar should be visible
+  const visiblePaths = ['/', '/login', '/signup', '/script-lab', '/contact', '/projects', '/about'];
+  const isDashboard = pathname?.startsWith('/dashboard');
+  const isPublicSpace = !visiblePaths.includes(pathname || '') && !isDashboard && pathname !== '/';
+  
+  if (isPublicSpace) return null;
 
   const navLinks = [
     { name: 'About', href: '/about' },
     { name: 'Projects', href: '/projects' },
     { name: 'Script Lab', href: '/script-lab' },
+    { name: 'Content', href: '/content' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -57,6 +69,27 @@ export default function Navbar() {
             <a href="https://www.instagram.com/dip_builds/" target="_blank" className="text-zinc-400 hover:text-white transition-colors">
               <Instagram size={18} />
             </a>
+            
+            {isSignedIn ? (
+              <div className="flex items-center gap-6">
+                <Link href="/dashboard" className="text-sm font-bold text-white/50 hover:text-white transition-colors flex items-center gap-2 group">
+                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                   Dashboard
+                </Link>
+                <button 
+                  onClick={() => signOut()}
+                  className="px-4 py-2 border border-white/10 rounded-full text-[10px] font-bold uppercase tracking-widest text-white/40 hover:text-white hover:border-white/20 transition-all"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link href="/login">
+                <button className="px-5 py-2 bg-white text-black text-xs font-bold rounded-full hover:scale-105 transition-transform shadow-xl shadow-white/5">
+                  Portal Login
+                </button>
+              </Link>
+            )}
           </div>
         </div>
 

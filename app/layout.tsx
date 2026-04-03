@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import AuthProvider from '@/components/AuthProvider';
 
 
 const inter = Inter({
@@ -27,10 +28,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body suppressHydrationWarning className="bg-[#050505] text-zinc-300 antialiased selection:bg-white/20 selection:text-white">
-        <div className="grain" />
-        <Navbar />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <div className="grain" />
+          <Navbar />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

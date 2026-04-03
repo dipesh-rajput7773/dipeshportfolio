@@ -32,6 +32,7 @@ export default function Skills() {
         { name: 'Node.js', icon: <Server size={24} /> },
         { name: 'Express.js', icon: <Layers size={24} /> },
         { name: 'FastAPI', icon: <Cpu size={24} /> },
+        { name: 'Automation (n8n, Playwright)', icon: <Zap size={24} /> },
       ],
     },
     {
@@ -55,7 +56,6 @@ export default function Skills() {
       skills: [
         { name: 'E-commerce', icon: <TrendingUp size={24} /> },
         { name: 'Digital Products', icon: <Smartphone size={24} /> },
-        { name: 'Automation (n8n, Playwright)', icon: <Zap size={24} /> },
       ],
     },
   ];

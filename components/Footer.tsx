@@ -3,8 +3,18 @@
 import { motion } from 'motion/react';
 import { Instagram, Linkedin, Mail, ArrowUp } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // Define where Footer should be visible (same as Navbar)
+  const visiblePaths = ['/', '/login', '/signup', '/script-lab', '/contact', '/projects', '/about'];
+  const isDashboard = pathname?.startsWith('/dashboard');
+  const isPublicSpace = !visiblePaths.includes(pathname || '') && !isDashboard && pathname !== '/';
+  
+  if (isPublicSpace) return null;
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
