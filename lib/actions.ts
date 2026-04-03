@@ -4,11 +4,11 @@ import dbConnect from '@/lib/mongodb';
 import Space from '@/models/Space';
 import { revalidatePath } from 'next/cache';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 
 export async function saveSpace(formData: any) {
   try {
-    const session = await getServerSession(authOptions as any);
+    const session: any = await getServerSession(authOptions as any);
     if (!session || !session.user) return { error: 'Unauthorized' };
 
     await dbConnect();
@@ -61,7 +61,7 @@ export async function saveSpace(formData: any) {
 
 export async function addSpaceLink(title: string, url: string, icon: string = 'globe') {
     try {
-        const session = await getServerSession(authOptions as any);
+        const session: any = await getServerSession(authOptions as any);
         if (!session || !session.user) return { error: 'Unauthorized' };
 
         await dbConnect();
@@ -81,7 +81,7 @@ export async function addSpaceLink(title: string, url: string, icon: string = 'g
 
 export async function getSpace() {
   try {
-    const session = await getServerSession(authOptions as any);
+    const session: any = await getServerSession(authOptions as any);
     if (!session || !session.user) return { error: 'Unauthorized' };
 
     await dbConnect();
@@ -98,7 +98,7 @@ export async function getSpace() {
 
 export async function deleteSpaceLink(linkId: string) {
   try {
-    const session = await getServerSession(authOptions as any);
+    const session: any = await getServerSession(authOptions as any);
     if (!session || !session.user) return { error: 'Unauthorized' };
 
     await dbConnect();

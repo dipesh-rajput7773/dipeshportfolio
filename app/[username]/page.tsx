@@ -16,10 +16,15 @@ const themes: any = {
   glass: { bg: 'bg-[#080808]', border: 'border-white/10', text: 'text-white' },
 };
 
-export async function generateMetadata({ params }: { params: { username: string } }): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ username: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}): Promise<Metadata> {
+  const params = await props.params;
+  const username = params.username;
   return {
-    title: `${params.username} | Your Space`,
-    description: `Connect with ${params.username} in their digital space.`,
+    title: `${username} | Your Space`,
+    description: `Connect with ${username} in their digital space.`,
   };
 }
 
@@ -30,10 +35,15 @@ const IconMap: { [key: string]: any } = {
   globe: <Globe size={20} />,
 };
 
-export default async function PublicSpacePage({ params }: { params: { username: string } }) {
+export default async function PublicSpacePage(props: {
+  params: Promise<{ username: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const params = await props.params;
+  const username = params.username;
   await dbConnect();
   
-  const spaceData = await Space.findOne({ username: params.username.toLowerCase() });
+  const spaceData = await Space.findOne({ username: username.toLowerCase() });
 
   if (!spaceData) {
     notFound();

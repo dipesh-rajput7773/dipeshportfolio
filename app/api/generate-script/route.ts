@@ -31,8 +31,7 @@ export async function POST(req: Request) {
     }
 
     // 2. Generate Content via Gemini
-    const genAI = new GoogleGenAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY!);
-    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+    const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY! });
 
     const instructions = `
       You are a specialist storyteller and content specialist. 
@@ -46,8 +45,11 @@ export async function POST(req: Request) {
       Format the output clearly with "Script 1" and "Script 2" headers.
     `;
 
-    const result = await model.generateContent(instructions);
-    const scriptText = result.response.text();
+    const result = await ai.models.generateContent({
+      model: 'gemini-1.5-flash',
+      contents: instructions
+    });
+    const scriptText = result.text;
 
     // 3. Deduct 1 credit (only for non-admins)
     if (user.tier !== 'admin') {

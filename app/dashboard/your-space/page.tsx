@@ -23,13 +23,13 @@ export default function YourSpaceEditor() {
   const [success, setSuccess] = useState(false);
 
   const themes = [
-    { id: 'midnight', name: 'Midnight', bg: 'bg-[#050505]', preview: '#050505', text: 'text-white' },
-    { id: 'sunset', name: 'Sunset', bg: 'bg-gradient-to-tr from-orange-600/30 via-[#050505] to-[#050505]', preview: '#ea580c', text: 'text-amber-500' },
-    { id: 'ocean', name: 'Ocean', bg: 'bg-gradient-to-tr from-blue-600/30 via-[#050505] to-[#050505]', preview: '#2563eb', text: 'text-sky-400' },
-    { id: 'forest', name: 'Forest', bg: 'bg-gradient-to-tr from-emerald-600/30 via-[#050505] to-[#050505]', preview: '#059669', text: 'text-emerald-400' },
-    { id: 'neon', name: 'Neon', bg: 'bg-gradient-to-tr from-pink-600/30 via-[#050505] to-[#050505]', preview: '#db2777', text: 'text-pink-400' },
-    { id: 'silver', name: 'Silver', bg: 'bg-[#111]', preview: '#ffffff', text: 'text-zinc-100' },
-    { id: 'glass', name: 'Frosted', bg: 'bg-[#080808]', preview: '#666', text: 'text-white' }
+    { id: 'midnight', name: 'Midnight', bg: 'bg-[#050505]', preview: '#050505', text: 'text-white', border: 'border-white/10' },
+    { id: 'sunset', name: 'Sunset', bg: 'bg-gradient-to-tr from-orange-600/30 via-[#050505] to-[#050505]', preview: '#ea580c', text: 'text-amber-500', border: 'border-orange-500/10' },
+    { id: 'ocean', name: 'Ocean', bg: 'bg-gradient-to-tr from-blue-600/30 via-[#050505] to-[#050505]', preview: '#2563eb', text: 'text-sky-400', border: 'border-blue-500/10' },
+    { id: 'forest', name: 'Forest', bg: 'bg-gradient-to-tr from-emerald-600/30 via-[#050505] to-[#050505]', preview: '#059669', text: 'text-emerald-400', border: 'border-emerald-500/10' },
+    { id: 'neon', name: 'Neon', bg: 'bg-gradient-to-tr from-pink-600/30 via-[#050505] to-[#050505]', preview: '#db2777', text: 'text-pink-400', border: 'border-pink-500/20' },
+    { id: 'silver', name: 'Silver', bg: 'bg-[#111]', preview: '#ffffff', text: 'text-zinc-100', border: 'border-white/5' },
+    { id: 'glass', name: 'Frosted', bg: 'bg-[#080808]', preview: '#666', text: 'text-white', border: 'border-white/10' }
   ];
 
   // For Adding Link

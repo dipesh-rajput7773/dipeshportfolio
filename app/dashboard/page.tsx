@@ -1,5 +1,5 @@
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import dbConnect from '@/lib/mongodb';
 import User from '@/models/User';
@@ -7,7 +7,7 @@ import { LayoutDashboard, Sparkles, UserCircle, Settings, Rocket, Link as LinkIc
 import Link from 'next/link';
 
 export default async function DashboardPage() {
-  const session = await getServerSession(authOptions as any);
+  const session: any = await getServerSession(authOptions as any);
 
   if (!session) {
     redirect('/login');
