@@ -24,7 +24,7 @@ export const authOptions: NextAuthOptions = {
         if (!user) throw new Error('No user found. Please Sign Up.');
 
         // 1. If it's a direct password login
-        if (!credentials.isOtpLogin) {
+        if (credentials.isOtpLogin !== 'true') {
             if (!user.password) throw new Error('Please set a password or use OTP login.');
             const isValid = await bcrypt.compare(credentials.password, user.password);
             if (!isValid) throw new Error('Incorrect password.');

@@ -1,19 +1,26 @@
-import type {Metadata} from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import type { Metadata } from 'next';
+import { Inter, DM_Serif_Display, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/AuthProvider';
+import MaintenanceGuard from '@/components/MaintenanceGuard';
 
 
 const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-inter',
 });
 
-const spaceGrotesk = Space_Grotesk({
+const dmSerif = DM_Serif_Display({
+  weight: '400',
   subsets: ['latin'],
-  variable: '--font-display',
+  variable: '--font-dm-serif',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jetbrains-mono',
 });
 
 export const metadata: Metadata = {
@@ -26,12 +33,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
-      <body suppressHydrationWarning className="bg-[#050505] text-zinc-300 antialiased selection:bg-white/20 selection:text-white">
+    <html lang="en" className={`${inter.variable} ${dmSerif.variable} ${jetbrainsMono.variable}`}>
+      <body suppressHydrationWarning className="bg-background text-warm-white antialiased selection:bg-crimson/30 selection:text-white">
         <AuthProvider>
           <div className="grain" />
           <Navbar />
-          {children}
+          <MaintenanceGuard>
+            {children}
+          </MaintenanceGuard>
           <Footer />
         </AuthProvider>
       </body>

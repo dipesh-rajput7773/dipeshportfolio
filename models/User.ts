@@ -45,6 +45,14 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  tier: {
+    type: String,
+    default: 'free', // 'free', 'pro', 'admin'
+  },
+  lastGeneratedAt: {
+    type: Date,
+    default: null,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

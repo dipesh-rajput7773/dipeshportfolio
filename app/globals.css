@@ -1,21 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-dm-serif);
+  --font-mono: var(--font-jetbrains-mono);
+  
+  --color-background: #080808;
+  --color-surface: #111;
+  --color-crimson: #C41230;
+  --color-warm-white: #F0EDE8;
+  --color-muted: #A0A0A0;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: #080808;
+    color: #F0EDE8;
   }
 
   body {
     @apply font-sans;
+    background-color: #080808;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2, h3 {
     @apply font-display;
+  }
+
+  code, pre, .mono {
+    @apply font-mono;
   }
 
   /* Cinematic Grain Effect */
@@ -64,15 +78,39 @@
 }
 
 @layer components {
-  .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  .editorial-card {
+    background-color: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-br from-white via-white/80 to-white/40;
+  .editorial-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: #151515;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
   }
 
-  .glow {
-    @apply relative after:absolute after:inset-0 after:bg-white/20 after:blur-3xl after:-z-10;
+  .btn-primary {
+    @apply px-8 py-4 bg-crimson text-white font-mono font-bold text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 hover:bg-red-700 shadow-lg shadow-crimson/10 active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply px-8 py-4 bg-transparent border border-warm-white/20 text-warm-white font-mono font-bold text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 hover:bg-warm-white hover:text-black hover:border-warm-white active:scale-[0.98];
+  }
+
+  .crimson-glow {
+    box-shadow: 0 0 20px rgba(196, 18, 48, 0.15);
+  }
+  
+  .vertical-rule {
+    width: 1px;
+    height: 100%;
+    background-color: #C41230;
+  }
+  
+  .horizontal-rule {
+    height: 1px;
+    width: 100%;
+    background-color: #C41230;
   }
 }

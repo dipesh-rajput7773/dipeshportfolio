@@ -9,9 +9,9 @@ export default function Footer() {
   const pathname = usePathname();
 
   // Define where Footer should be visible (same as Navbar)
-  const visiblePaths = ['/', '/login', '/signup', '/script-lab', '/contact', '/projects', '/about'];
+  const visiblePaths = ['/', '/login', '/signup', '/script-lab', '/contact', '/projects', '/about', '/content'];
   const isDashboard = pathname?.startsWith('/dashboard');
-  const isPublicSpace = !visiblePaths.includes(pathname || '') && !isDashboard && pathname !== '/';
+  const isPublicSpace = !visiblePaths.includes(pathname || '') && !isDashboard;
   
   if (isPublicSpace) return null;
 

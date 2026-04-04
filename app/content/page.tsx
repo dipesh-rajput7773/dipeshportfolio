@@ -1,100 +1,192 @@
 'use client';
 
-import { motion } from 'motion/react';
-import { Film, Play, Instagram, Youtube, Scissors, Sparkles, ArrowRight, Eye, Camera } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Instagram, Youtube, User, Film, Sparkles, Zap, Wand2, Lightbulb, Camera, BarChart3, TrendingUp, DollarSign, Activity, Users, ArrowRight, History, Terminal } from 'lucide-react';
 import Link from 'next/link';
 
 export default function ContentPage() {
-  const archives = [
-    { name: 'Cinematic Log', desc: 'A collection of frames that breathe. Focus on light, texture, and silence.', icon: <Camera size={24}/> },
-    { name: 'Short-Form Narrative', desc: 'Retention-first storytelling. Turning 60 seconds into a cinematic experience.', icon: <Scissors size={24}/> },
-    { name: 'Visual Branding', desc: 'Designing the look and feel of high-performance digital identities.', icon: <Sparkles size={24}/> }
+  const exitArchive = [
+    { 
+        id: "FLAGSHIP OP", 
+        action: "BUILT / SCALED / SOLD", 
+        stat: "30M+ REACTIONS", 
+        sub: "8,000 FOLLOWERS | 16M REEL",
+        lesson: "Engagement density beats follower count.",
+        color: "border-crimson/40 shadow-crimson/5",
+        bg: "bg-crimson/[0.03]"
+    },
+    { 
+        id: "DUAL SECONDARY", 
+        action: "SCALED / SOLD (₹10K)", 
+        stat: "2 PAGES", 
+        sub: "EXPERIMENTAL OPS",
+        lesson: "Buy your next chapter with your exits.",
+        color: "border-amber-500/30",
+        bg: "bg-amber-500/[0.03]"
+    },
+    { 
+        id: "DELETED PROTOCOL", 
+        action: "TESTED / DELETED", 
+        stat: "1 PAGE", 
+        sub: "RAW FEEDBACK LOOP",
+        lesson: "Break the system to understand the atoms.",
+        color: "border-warm-white/10",
+        bg: "bg-warm-white/[0.02]"
+    }
+  ];
+
+  const deepThoughts = [
+    { 
+        id: "#001", 
+        hook: "Script Outline", 
+        content: "Log viral hone ke liye content banate hain. Main content banata hun kyunki kuch dard karta hai andar — aur usse bahar nikalna hai kisi tarah." 
+    },
+    { 
+        id: "#002", 
+        hook: "The Architect Mindset", 
+        content: "I've seen the top (30M reactions). I chose to rebuild from zero. This time, with intention. 26 followers is a story, not a failure." 
+    }
+  ];
+
+  const grindLog = [
+    { date: "APRIL 2026", event: "41 posts. 26 followers. Still posting. Not for numbers. For the reps." },
+    { date: "MARCH 2026", event: "Rebuilt Auth from scratch. Learned more in 3 days than 3 months." },
+    { date: "2024", event: "Sold 2 meme ops for ₹10K. 16M view reel milestone achieved." }
   ];
 
   return (
-    <main className="relative min-h-screen pt-40 pb-20 px-6 selection:bg-white selection:text-black">
+    <main className="relative min-h-screen pt-40 pb-20 px-6 selection:bg-crimson/30 selection:text-white">
       <div className="max-w-6xl mx-auto space-y-40">
         
-        {/* Editorial Header */}
+        {/* Honest Hero Narrative */}
         <div className="space-y-6">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-[10px] uppercase font-bold tracking-[0.5em] text-white/20 italic"
-          >
-            02 / THE VISUAL ARCHIVE
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-9xl font-display font-bold tracking-tighter text-white"
-          >
-            The <br />
-            <span className="text-white/20 italic">Frames.</span>
-          </motion.h1>
-          <div className="h-1 w-24 bg-white/20 rounded-full" />
-          <p className="text-zinc-500 font-medium tracking-tight text-xl max-w-sm italic pt-6">
-            Capturing the world through a lens, document life, one frame at a time.
+          <label className="mono text-crimson text-xs uppercase tracking-[0.5em] font-bold">005 — THE NARRATIVE ARCHIVE</label>
+          <h1 className="text-6xl md:text-[10rem] font-display font-medium tracking-tighter text-warm-white leading-tight uppercase">
+             Pages Sold. <br />
+            <span className="text-muted italic">Lessons Kept.</span>
+          </h1>
+          <p className="mono text-muted text-xs md:text-sm max-w-xl leading-relaxed lowercase pt-4 border-l border-crimson pl-6">
+             // Precision documentation of a 30M+ reaction journey. Exited the noise to build something that breathes. 26 followers, 30M lessons.
           </p>
         </div>
 
-        {/* Cinematic Grid: No Generic Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {archives.map((c, i) => (
-                <div 
-                    key={c.name}
-                    className="group p-10 glass rounded-[60px] border border-white/5 hover:border-white/20 transition-all flex flex-col justify-between h-[500px] relative overflow-hidden bg-gradient-to-tr from-stone-900/40 via-black to-black"
-                >
-                    <div className="p-4 bg-white/5 rounded-3xl w-fit group-hover:bg-white group-hover:text-black transition-all">
-                        {c.icon}
+        {/* THE EXIT ARCHIVE SECTION */}
+        <section className="space-y-16">
+             <div className="flex items-center gap-3">
+                  <History size={18} className="text-crimson" />
+                  <h4 className="mono text-warm-white text-sm uppercase tracking-widest font-bold">THE EXIT ARCHIVE (REACH OPERATIONS)</h4>
+             </div>
+             
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                  {exitArchive.map((page, i) => (
+                    <div key={i} className={`p-10 border ${page.color} ${page.bg} transition-all group relative overflow-hidden backdrop-blur-sm shadow-2xl`}>
+                         <div className="space-y-8 relative z-10">
+                            <span className="mono text-[10px] text-muted-foreground uppercase tracking-widest">{page.id}</span>
+                            <div className="space-y-4">
+                                <h5 className="font-display text-4xl text-warm-white leading-tight uppercase italic">{page.action}</h5>
+                                <div className="space-y-1">
+                                    <p className="mono text-crimson text-xl font-bold tracking-widest">{page.stat}</p>
+                                    <p className="mono text-muted text-[10px] tracking-widest opacity-60 uppercase">{page.sub}</p>
+                                </div>
+                            </div>
+                            <p className="text-xs italic text-muted leading-relaxed border-t border-warm-white/5 pt-6 opacity-60 group-hover:opacity-100 transition-opacity">
+                                // {page.lesson}
+                            </p>
+                         </div>
+                         <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                             <TrendingUp size={80} strokeWidth={0.5} />
+                         </div>
                     </div>
-                    <div className="space-y-4 pt-12 relative z-10">
-                        <h3 className="text-4xl font-display font-bold text-white tracking-tighter leading-tight italic">{c.name}</h3>
-                        <p className="text-zinc-500 text-sm font-medium leading-relaxed max-w-xs pt-4">
-                            {c.desc}
-                        </p>
-                    </div>
-                    <div className="flex items-center gap-2 text-white/40 font-bold text-[10px] uppercase tracking-widest pt-4 group-hover:text-white transition-all">
-                        Launch Gallery <Play size={14}/>
-                    </div>
-                    {/* Visual Overlay texture */}
-                    <div className="absolute -bottom-10 -right-10 opacity-5 group-hover:opacity-10 transition-opacity">
-                         <Play size={250} />
-                    </div>
-                </div>
-            ))}
-        </div>
-
-        {/* Visual Showcase: Clean & Minimal */}
-        <section className="space-y-12 pb-40">
-            <h2 className="text-xs font-bold uppercase tracking-[0.5em] text-white/40 italic">Visual History</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {[1, 2, 3, 4].map(i => (
-                    <div key={i} className="aspect-[9/16] bg-zinc-900/50 rounded-[40px] border border-white/5 transition-all hover:scale-[1.02] flex items-center justify-center relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-20 transition-opacity" />
-                        <Link href="https://instagram.com" target="_blank" className="p-4 bg-white text-black rounded-full opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
-                             <Instagram size={20}/>
-                        </Link>
-                        {/* Film-like details */}
-                        <div className="absolute top-10 left-10 flex gap-2">
-                             <div className="w-1 h-1 rounded-full bg-red-500 animate-pulse" />
-                             <span className="text-[8px] font-bold text-white/20 uppercase tracking-[0.3em]">REC</span>
-                        </div>
-                        <p className="absolute bottom-10 text-[8px] font-bold uppercase tracking-[0.5em] text-white/20 border-t border-white/5 pt-4">CINEMA / NO {i}</p>
-                    </div>
-                ))}
-            </div>
+                  ))}
+             </div>
         </section>
 
-        {/* Closing: High Conversion Section */}
-        <section className="py-20 bg-white/5 rounded-[60px] border border-white/5 flex flex-col md:flex-row items-center justify-between gap-12 px-12 text-center md:text-left">
-            <div className="space-y-4">
-                <h3 className="text-5xl font-display font-bold text-white tracking-tighter italic">Ready for Narrative?</h3>
-                <p className="text-zinc-500 text-sm font-medium max-w-sm">I engineer stories that stay in the mind long after the screen goes black.</p>
+        {/* DEEP THOUGHT SCRIPT CARDS */}
+        <section className="space-y-16">
+             <div className="flex items-center gap-3">
+                  <Wand2 size={18} className="text-crimson" />
+                  <h4 className="mono text-warm-white text-sm uppercase tracking-widest font-bold">DEEP THOUGHT SCRIPTS / HOOKS</h4>
+             </div>
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                  {deepThoughts.map((script, i) => (
+                    <div key={i} className="editorial-card p-12 bg-white/[0.01] border border-warm-white/5 space-y-12 group hover:border-crimson/20 transition-all">
+                        <div className="flex justify-between items-center opacity-40">
+                             <span className="mono text-[10px] uppercase tracking-widest">Thought {script.id}</span>
+                             <span className="mono text-[10px] uppercase tracking-widest">{script.hook}</span>
+                        </div>
+                        <p className="text-2xl md:text-4xl font-display text-warm-white leading-[1.1] md:leading-[1.15]">
+                            &quot;{script.content}&quot;
+                        </p>
+                        <div className="pt-8 border-t border-warm-white/5 flex justify-between items-center px-2">
+                             <span className="mono text-[8px] text-muted italic">— Hook generated. Reel pending shoot.</span>
+                             <ArrowRight size={14} className="text-muted group-hover:text-crimson transition-transform group-hover:translate-x-2" />
+                        </div>
+                    </div>
+                  ))}
+             </div>
+        </section>
+
+        {/* THE GRIND LOG (TERMINAL VIBE) */}
+        <section className="space-y-16">
+             <div className="flex items-center gap-3">
+                  <Terminal size={18} className="text-emerald-500" />
+                  <h4 className="mono text-warm-white text-sm uppercase tracking-widest font-bold">THE GRIND LOG / STATUS: ACTIVE</h4>
+             </div>
+             <div className="bg-black/40 border border-emerald-500/10 p-10 md:p-16 space-y-12">
+                  {grindLog.map((log, i) => (
+                    <div key={i} className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-10 border-b border-warm-white/5 last:border-0 pb-10 last:pb-0 mb-10 last:mb-0">
+                         <span className="mono text-[10px] text-emerald-500 font-bold uppercase tracking-widest group-hover:scale-105 transition-transform inline-block">[{log.date}]</span>
+                         <p className="md:col-span-3 text-sm md:text-md text-muted italic leading-relaxed group hover:text-warm-white transition-colors">
+                             &quot;{log.event}&quot;
+                         </p>
+                    </div>
+                  ))}
+                  <div className="flex items-center gap-4 pt-10">
+                       <span className="w-2 h-2 bg-emerald-500 rounded-full animate-ping" />
+                       <span className="mono text-[10px] text-emerald-500 uppercase tracking-widest font-bold">System Online: Current Status — Building from 0.</span>
+                  </div>
+             </div>
+        </section>
+
+        {/* FIXED VIRTUAL CINEMA (STATIC THUMBNAILS) */}
+        <section className="space-y-16">
+             <div className="flex items-center gap-3">
+                  <Film size={18} className="text-crimson" />
+                  <h4 className="mono text-warm-white text-sm uppercase tracking-widest font-bold">VIRTUAL CINEMA / SELECTED EXPERIMENTS</h4>
+             </div>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                  <div className="editorial-card group p-0 overflow-hidden relative border border-warm-white/10 aspect-[9/16] bg-surface flex flex-col justify-center items-center text-center p-8 space-y-6">
+                        <div className="p-4 bg-crimson/10 rounded-full text-crimson group-hover:scale-110 transition-transform shadow-2xl">
+                             <Instagram size={32} />
+                        </div>
+                        <div className="space-y-4 z-20">
+                             <h4 className="font-display text-3xl text-warm-white px-6 uppercase tracking-tighter italic">Cinematic Test 01.</h4>
+                             <p className="mono text-[10px] text-muted uppercase tracking-widest opacity-60 italic leading-relaxed px-6">// Shot on Phone. Graded in DaVinci.</p>
+                        </div>
+                        <Link href="https://instagram.com" className="px-8 py-4 bg-crimson text-white text-[10px] mono font-bold uppercase tracking-widest z-20 hover:bg-black transition-all shadow-2xl">
+                             Watch on Instagram
+                        </Link>
+                        {/* Digital Texture */}
+                        <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-crimson/10 to-transparent pointer-events-none" />
+                  </div>
+                  {/* Empty Slot for Progress */}
+                  <div className="border border-warm-white/5 border-dashed flex items-center justify-center aspect-[9/16] opacity-30 hover:opacity-100 transition-opacity">
+                        <p className="mono text-[10px] uppercase tracking-[0.4em] text-muted rotate-90">Archive Slot Pending</p>
+                  </div>
+             </div>
+        </section>
+
+        {/* Creator Channel Bridge */}
+        <section className="py-40 text-center border-t border-warm-white/5 bg-gradient-to-b from-transparent to-crimson/[0.01]">
+            <h4 className="mono text-crimson text-[10px] uppercase tracking-[0.4em] font-bold mb-16 italic opacity-40 uppercase">THE MISSION: BUILD WITH INTENTION</h4>
+            <div className="flex flex-wrap gap-12 md:gap-24 justify-center items-center">
+                <a href="https://instagram.com" className="font-display text-4xl md:text-6xl text-warm-white hover:text-crimson transition-all flex items-center gap-4 group italic tracking-tighter">
+                    @thedipverse <Instagram size={28} className="text-muted group-hover:text-crimson" />
+                </a>
+                <a href="https://youtube.com" className="font-display text-4xl md:text-6xl text-warm-white hover:text-crimson transition-all flex items-center gap-4 group italic tracking-tighter">
+                    CHANNEL <Youtube size={28} className="text-muted group-hover:text-crimson" />
+                </a>
             </div>
-            <Link href="/contact" className="px-12 py-6 bg-white text-black font-bold rounded-full hover:scale-110 transition-all flex items-center gap-3 shadow-2xl shadow-white/5">
-                Let&apos;s Build Impact <Eye size={18}/>
-            </Link>
         </section>
 
       </div>
