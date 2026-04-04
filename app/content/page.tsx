@@ -54,6 +54,36 @@ export default function ContentPage() {
     { date: "2024", event: "Sold 2 meme ops for ₹10K. 16M view reel milestone achieved." }
   ];
 
+  const youtubeArchive = [
+    { 
+        id: "DOCUMENTARY EDIT", 
+        action: "ANIMATED / 20 DAYS / UNPUBLISHED", 
+        stat: "RAM MANDIR CONFLICT", 
+        sub: "MOBILE VN EDIT",
+        lesson: "High-end narrative requires scalable tools. 20 days on mobile is grit, but not a system.",
+        color: "border-blue-500/30",
+        bg: "bg-blue-500/[0.02]"
+    },
+    { 
+        id: "SONG SYNC", 
+        action: "TESTED / SHOT", 
+        stat: "MUSIC VISUALS", 
+        sub: "EDIT PACING",
+        lesson: "Visual momentum lives in the edit rhythm, not just the footage.",
+        color: "border-amber-500/30",
+        bg: "bg-amber-500/[0.02]"
+    },
+    { 
+        id: "MUKBANG FORMAT", 
+        action: "FILMED / ARCHIVED", 
+        stat: "FOOD & AUDIO", 
+        sub: "CULTURAL FORMAT",
+        lesson: "Following trends without resonance disrupts your real creative identity.",
+        color: "border-warm-white/10",
+        bg: "bg-warm-white/[0.02]"
+    }
+  ];
+
   return (
     <main className="relative min-h-screen pt-40 pb-20 px-6 selection:bg-crimson/30 selection:text-white">
       <div className="max-w-6xl mx-auto space-y-40">
@@ -95,6 +125,34 @@ export default function ContentPage() {
                          </div>
                          <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                              <TrendingUp size={80} strokeWidth={0.5} />
+                         </div>
+                    </div>
+                  ))}
+             </div>
+        </section>
+
+        {/* THE YOUTUBE LAB (UNPUBLISHED ARCHIVE) */}
+        <section className="space-y-16">
+             <div className="flex items-center gap-3">
+                  <Youtube size={18} className="text-red-500" />
+                  <h4 className="mono text-warm-white text-sm uppercase tracking-widest font-bold">THE YOUTUBE EXPERIMENTS / UNPUBLISHED</h4>
+             </div>
+             
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                  {youtubeArchive.map((lab, i) => (
+                    <div key={i} className={`p-10 border ${lab.color} ${lab.bg} transition-all group relative overflow-hidden backdrop-blur-sm shadow-2xl`}>
+                         <div className="space-y-8 relative z-10">
+                            <span className="mono text-[10px] text-muted-foreground uppercase tracking-widest">{lab.id}</span>
+                            <div className="space-y-4">
+                                <h5 className="font-display text-2xl text-warm-white leading-tight uppercase italic">{lab.action}</h5>
+                                <div className="space-y-1">
+                                    <p className="mono font-bold tracking-widest text-warm-white pt-2">{lab.stat}</p>
+                                    <p className="mono text-muted text-[10px] tracking-widest opacity-60 uppercase">{lab.sub}</p>
+                                </div>
+                            </div>
+                            <p className="text-xs italic text-muted leading-relaxed border-t border-warm-white/5 pt-6 opacity-60 group-hover:opacity-100 transition-opacity">
+                                // {lab.lesson}
+                            </p>
                          </div>
                     </div>
                   ))}
