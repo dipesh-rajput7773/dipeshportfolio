@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Mail, ShieldCheck, ArrowRight, Loader2, Sparkles, CheckCircle2, Lock } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
 import { signIn } from 'next-auth/react';

@@ -1,6 +1,8 @@
-// This middleware will be updated for NextAuth in the next step.
-export default function middleware() {}
+import middleware from 'next-auth/middleware';
+
+export default middleware;
 
 export const config = {
-  matcher: [], // Disabled until NextAuth setup
+  // Protect all /dashboard/* routes except /dashboard/smart-link
+  matcher: ['/dashboard/script-lab', '/dashboard/your-space', '/dashboard/analytics', '/dashboard'],
 };

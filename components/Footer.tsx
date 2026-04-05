@@ -9,10 +9,10 @@ export default function Footer() {
   const pathname = usePathname();
 
   // Define where Footer should be visible (same as Navbar)
-  const visiblePaths = ['/', '/login', '/signup', '/script-lab', '/contact', '/projects', '/about', '/content'];
+  const visiblePaths = ['/', '/login', '/signup', '/studio', '/contact', '/projects', '/about'];
   const isDashboard = pathname?.startsWith('/dashboard');
   const isPublicSpace = !visiblePaths.includes(pathname || '') && !isDashboard;
-  
+
   if (isPublicSpace) return null;
 
   const scrollToTop = () => {
@@ -28,7 +28,7 @@ export default function Footer() {
               thedipverse<span className="text-white/40">.</span>
             </Link>
             <p className="text-xl text-zinc-400 font-medium tracking-tight leading-relaxed">
-              &quot;I&apos;m not here to be average. I&apos;m here to create impact.&quot;
+              &quot;Engineering the workflows of next-generation creators.&quot;
             </p>
           </div>
 

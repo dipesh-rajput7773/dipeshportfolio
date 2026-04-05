@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, Zap, Brain, Target, MessageSquare, Loader2, ArrowRight, CheckCircle2, Copy, Download } from 'lucide-react';
 import html2canvas from 'html2canvas';
 

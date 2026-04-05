@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Plus, Trash2, Save, ExternalLink, Loader2, Image as ImageIcon, Music, GripVertical, Rocket, Upload, Copy } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
 import Link from 'next/link';

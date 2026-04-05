@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Power, Terminal } from 'lucide-react';
 import PageTransition from '@/components/PageTransition';
 

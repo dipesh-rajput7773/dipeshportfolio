@@ -1,9 +1,39 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Instagram, Linkedin, ArrowRight, MessageSquare, Send } from 'lucide-react';
+import { Mail, Instagram, Linkedin, ArrowRight, MessageSquare, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) return;
+    setStatus('loading');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (error) {
+      setStatus('error');
+      setTimeout(() => setStatus('idle'), 5000);
+    }
+  };
+
   const socialLinks = [
     { name: '@thedipverse', href: 'https://www.instagram.com/thedipverse/', icon: <Instagram size={24} /> },
     { name: '@dip_builds', href: 'https://www.instagram.com/dip_builds/', icon: <Instagram size={24} /> },
@@ -30,7 +60,7 @@ export default function Contact() {
             </div>
 
             <p className="text-xl text-zinc-400 font-medium tracking-tight leading-relaxed max-w-md">
-              Whether you have a project in mind, want to collaborate, or just want to say hi, I&apos;m always open to new opportunities and connections.
+              Available for development and editing. Let's talk about the work.
             </p>
 
             <div className="flex flex-col gap-6">
@@ -64,46 +94,62 @@ export default function Contact() {
             <div className="absolute top-0 right-0 p-12 text-white/5">
               <MessageSquare size={120} />
             </div>
-            
+
             <div className="space-y-4 relative z-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-xs font-bold tracking-widest uppercase text-white/60 mb-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                Currently Booking for Q3 2026
+                Open to work
               </div>
               <h4 className="text-4xl font-display font-bold text-white tracking-tighter">
-                Let&apos;s engineer your vision.
+                Let&apos;s talk.
               </h4>
               <p className="text-zinc-400 font-medium tracking-tight">
-                Use the form below to initiate a project discussion. I typically respond within 24 hours.
+                Send a message to discuss your project.
               </p>
             </div>
 
-            <form className="space-y-6 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="space-y-4">
                 <input
                   type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                  required
                   placeholder="Your Name"
                   className="w-full px-8 py-6 glass rounded-3xl text-white placeholder:text-white/20 focus:outline-none focus:border-white/40 transition-colors"
+                  disabled={status === 'loading'}
                 />
                 <input
                   type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                  required
                   placeholder="Your Email"
                   className="w-full px-8 py-6 glass rounded-3xl text-white placeholder:text-white/20 focus:outline-none focus:border-white/40 transition-colors"
+                  disabled={status === 'loading'}
                 />
                 <textarea
+                  value={formData.message}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  required
                   placeholder="Your Message"
                   rows={4}
                   className="w-full px-8 py-6 glass rounded-3xl text-white placeholder:text-white/20 focus:outline-none focus:border-white/40 transition-colors resize-none"
+                  disabled={status === 'loading'}
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="w-full py-6 bg-white text-black font-bold rounded-3xl hover:scale-[1.02] transition-transform flex items-center justify-center gap-3"
+                disabled={status === 'loading'}
+                className="w-full py-6 bg-white text-black font-bold rounded-3xl hover:scale-[1.02] transition-transform flex items-center justify-center gap-3 disabled:opacity-70 disabled:hover:scale-100"
               >
-                Send Message <Send size={20} />
+                {status === 'idle' && <>Send Message <Send size={20} /></>}
+                {status === 'loading' && <>Sending... <Loader2 size={20} className="animate-spin" /></>}
+                {status === 'success' && <>Message Sent! <CheckCircle2 size={20} className="text-green-500" /></>}
+                {status === 'error' && <>Failed to Send <AlertCircle size={20} className="text-red-500" /></>}
               </button>
             </form>
           </motion.div>
