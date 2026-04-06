@@ -24,13 +24,13 @@ export default async function DashboardPage() {
   try {
     mongoUser = await User.findOne({ email: userEmail });
     if (!mongoUser) {
-        mongoUser = await User.create({ email: userEmail, name: session.user?.name || 'Creator' });
+      mongoUser = await User.create({ email: userEmail, name: session.user?.name || 'Creator' });
     }
     if (mongoUser && (userEmail === 'dipeshrajput2002@gmail.com' || userEmail === 'admin@thedipverse.com') && mongoUser.tier !== 'admin') {
-        mongoUser.tier = 'admin';
-        await mongoUser.save();
+      mongoUser.tier = 'admin';
+      await mongoUser.save();
     }
-    
+
     // Fetch Global Signals
     platformSettings = await Settings.findOne() || { globalAlert: { active: false }, dailyPrompt: { title: 'The Void Engine', body: 'Neural signal disconnected.' } };
   } catch (error) {
@@ -48,8 +48,8 @@ export default async function DashboardPage() {
       status: 'Ready',
     },
     {
-      name: 'Your Space',
-      description: 'The cinematic digital archive for builders.',
+      name: 'LinkVerse',
+      description: 'Your personal link page. One link for everything.',
       href: '/dashboard/your-space',
       icon: <Rocket size={24} />,
       status: 'Ready',
@@ -73,28 +73,27 @@ export default async function DashboardPage() {
   return (
     <main className="min-h-screen bg-background text-warm-white pt-24 md:pt-32 pb-10 md:pb-20 px-4 md:px-6 selection:bg-crimson/30 selection:text-white">
       <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
-        
+
         {/* Global System Alert Banner */}
         {platformSettings.globalAlert?.active && (
-            <div className={`p-5 md:p-6 mb-12 border-l-4 overflow-hidden relative group transition-all duration-500 animate-in slide-in-from-top-4 ${
-                platformSettings.globalAlert.level === 'critical' ? 'border-crimson bg-crimson/[0.08] text-crimson shadow-lg shadow-crimson/10' : 
-                platformSettings.globalAlert.level === 'warning' ? 'border-amber-500 bg-amber-500/5 text-amber-500' : 
+          <div className={`p-5 md:p-6 mb-12 border-l-4 overflow-hidden relative group transition-all duration-500 animate-in slide-in-from-top-4 ${platformSettings.globalAlert.level === 'critical' ? 'border-crimson bg-crimson/[0.08] text-crimson shadow-lg shadow-crimson/10' :
+              platformSettings.globalAlert.level === 'warning' ? 'border-amber-500 bg-amber-500/5 text-amber-500' :
                 'border-warm-white/20 bg-warm-white/5 text-warm-white'
             }`}>
-                <div className="flex items-start gap-5 md:gap-8 relative z-10">
-                    <div className="pt-1">
-                        {platformSettings.globalAlert.level === 'critical' ? <AlertTriangle size={20} /> : <Info size={20} />}
-                    </div>
-                    <div className="space-y-2">
-                        <p className="mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Platform Editorial Broadcast — {platformSettings.globalAlert.level}</p>
-                        <p className="text-sm md:text-md italic font-medium leading-relaxed leading-snug">
-                            {platformSettings.globalAlert.message}
-                        </p>
-                    </div>
-                </div>
-                {/* Cinematic Texture */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+            <div className="flex items-start gap-5 md:gap-8 relative z-10">
+              <div className="pt-1">
+                {platformSettings.globalAlert.level === 'critical' ? <AlertTriangle size={20} /> : <Info size={20} />}
+              </div>
+              <div className="space-y-2">
+                <p className="mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">Platform Editorial Broadcast — {platformSettings.globalAlert.level}</p>
+                <p className="text-sm md:text-md italic font-medium leading-relaxed leading-snug">
+                  {platformSettings.globalAlert.message}
+                </p>
+              </div>
             </div>
+            {/* Cinematic Texture */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+          </div>
         )}
 
         {/* Header Section */}
@@ -106,7 +105,7 @@ export default async function DashboardPage() {
               <span className="text-muted italic">{mongoUser.name || 'Creator'}.</span>
             </h1>
           </div>
-          
+
           <div className="flex items-center justify-center md:justify-start gap-6 p-6 border border-warm-white/5 bg-warm-white/2">
             <div className="text-3xl font-display font-bold text-crimson italic">
               {mongoUser.credits || 0}
@@ -121,49 +120,49 @@ export default async function DashboardPage() {
 
         {/* Daily Neural Feed Card */}
         <div className="editorial-card p-1 md:p-1.5 bg-gradient-to-br from-amber-500/20 via-crimson/10 to-transparent">
-             <div className="bg-background/95 p-8 md:p-12 space-y-8 relative overflow-hidden">
-                <div className="flex justify-between items-center relative z-10">
-                    <div className="flex items-center gap-4">
-                        <Sparkles className="text-amber-500 animate-pulse" size={20} />
-                        <span className="mono text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-amber-500/80">The Daily Neural Feed</span>
-                    </div>
-                    <div className="text-[10px] mono text-muted uppercase tracking-widest hidden md:block">Signal Origin: Master Control</div>
-                </div>
-                <div className="space-y-6 relative z-10">
-                    <h2 className="text-4xl md:text-6xl font-display italic font-bold tracking-tighter leading-tight max-w-4xl">
-                        {platformSettings.dailyPrompt?.title || 'The Infinite Sequence.'}
-                    </h2>
-                    <p className="text-muted-foreground text-md md:text-lg italic font-medium leading-relaxed max-w-3xl leading-snug">
-                        "{platformSettings.dailyPrompt?.body || 'Neural signal calibration incomplete. Check back shortly for today’s content blueprint.'}"
-                    </p>
-                </div>
-                
-                {/* Visual Flair */}
-                <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-amber-500/5 blur-[100px] rounded-full" />
-                <div className="absolute right-12 bottom-12 opacity-5">
-                    <Zap size={180} />
-                </div>
-             </div>
+          <div className="bg-background/95 p-8 md:p-12 space-y-8 relative overflow-hidden">
+            <div className="flex justify-between items-center relative z-10">
+              <div className="flex items-center gap-4">
+                <Sparkles className="text-amber-500 animate-pulse" size={20} />
+                <span className="mono text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-amber-500/80">The Daily Neural Feed</span>
+              </div>
+              <div className="text-[10px] mono text-muted uppercase tracking-widest hidden md:block">Signal Origin: Master Control</div>
+            </div>
+            <div className="space-y-6 relative z-10">
+              <h2 className="text-4xl md:text-6xl font-display italic font-bold tracking-tighter leading-tight max-w-4xl">
+                {platformSettings.dailyPrompt?.title || 'The Infinite Sequence.'}
+              </h2>
+              <p className="text-muted-foreground text-md md:text-lg italic font-medium leading-relaxed max-w-3xl leading-snug">
+                "{platformSettings.dailyPrompt?.body || 'Neural signal calibration incomplete. Check back shortly for today’s content blueprint.'}"
+              </p>
+            </div>
+
+            {/* Visual Flair */}
+            <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-amber-500/5 blur-[100px] rounded-full" />
+            <div className="absolute right-12 bottom-12 opacity-5">
+              <Zap size={180} />
+            </div>
+          </div>
         </div>
 
         {/* Tools Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 pt-10 md:pt-12 border-t border-warm-white/5">
           {tools.map((tool, i) => (
-            <Link 
-              key={tool.name} 
+            <Link
+              key={tool.name}
               href={tool.href}
               className="editorial-card p-8 md:p-10 space-y-10 md:space-y-12 flex flex-col justify-between group h-auto min-h-[350px] md:min-h-[400px]"
             >
               <div className="space-y-8">
                 <div className="flex justify-between items-start">
-                   <div className="p-4 border border-warm-white/10 group-hover:bg-crimson group-hover:border-crimson transition-all text-muted group-hover:text-white">
-                      {tool.icon}
-                   </div>
-                   <span className="mono text-[8px] text-muted uppercase tracking-[0.2em] group-hover:text-crimson transition-colors pt-2">
-                        [ TOOL / 0{i + 1} ]
-                   </span>
+                  <div className="p-4 border border-warm-white/10 group-hover:bg-crimson group-hover:border-crimson transition-all text-muted group-hover:text-white">
+                    {tool.icon}
+                  </div>
+                  <span className="mono text-[8px] text-muted uppercase tracking-[0.2em] group-hover:text-crimson transition-colors pt-2">
+                    [ TOOL / 0{i + 1} ]
+                  </span>
                 </div>
-                
+
                 <div className="space-y-2">
                   <h3 className="text-3xl md:text-4xl font-display font-bold text-warm-white tracking-tighter italic">{tool.name}.</h3>
                   <p className="mono text-muted text-[10px] md:text-[11px] leading-relaxed max-w-xs pt-2 md:pt-4 lowercase">

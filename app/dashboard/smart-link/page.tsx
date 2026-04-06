@@ -78,6 +78,15 @@ export default function SmartLinkPage() {
         const smartUrl = `${baseUrl}/api/redirect?url=${encodeURIComponent(inputUrl)}`;
         setGeneratedUrl(smartUrl);
         setCopied(false);
+
+        // Log analytics (signed-in users only)
+        if (isSignedIn) {
+            fetch('/api/tool-analytics', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ tool: 'smart-link', action: 'convert', meta: { url: inputUrl.slice(0, 80) } }),
+            }).catch(() => { });
+        }
     };
 
     const handleCopy = () => {

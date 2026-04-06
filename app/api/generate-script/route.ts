@@ -30,12 +30,12 @@ export async function POST(req: Request) {
 
     // Rate Limit Check (30 seconds for free users)
     if (user.tier !== 'admin' && user.lastGeneratedAt) {
-        const secondsSinceLast = (Date.now() - new Date(user.lastGeneratedAt).getTime()) / 1000;
-        if (secondsSinceLast < 30) {
-            return NextResponse.json({ 
-                error: `System Cooling Down. Wait ${Math.ceil(30 - secondsSinceLast)} seconds.` 
-            }, { status: 429 });
-        }
+      const secondsSinceLast = (Date.now() - new Date(user.lastGeneratedAt).getTime()) / 1000;
+      if (secondsSinceLast < 30) {
+        return NextResponse.json({
+          error: `System Cooling Down. Wait ${Math.ceil(30 - secondsSinceLast)} seconds.`
+        }, { status: 429 });
+      }
     }
 
     if (!process.env.GROQ_API_KEY) {
@@ -93,7 +93,7 @@ export async function POST(req: Request) {
         }`;
         userPrompt = `Topic is — ${userData.topic}`;
         break;
-      
+
       default:
         return NextResponse.json({ error: 'Invalid tool type' }, { status: 400 });
     }
@@ -115,6 +115,17 @@ export async function POST(req: Request) {
       user.lastGeneratedAt = new Date();
       await user.save();
     }
+
+    // Log tool analytics
+    try {
+      const ToolAnalytics = (await import('@/models/ToolAnalytics')).default;
+      await ToolAnalytics.create({
+        userId: String(user._id),
+        tool: 'script-lab',
+        action: 'generate',
+        meta: { scriptType: type },
+      });
+    } catch (_) { } // non-critical, never block the response
 
     return NextResponse.json({ data, remainingCredits: user.credits });
 
