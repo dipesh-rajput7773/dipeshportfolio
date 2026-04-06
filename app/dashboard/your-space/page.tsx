@@ -202,11 +202,11 @@ export default function YourSpaceEditor() {
                 <div className="flex items-center gap-2 mb-1">
                   <Sparkles size={16} className="text-purple-500" />
                   <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', color: '#8b5cf6', textTransform: 'uppercase' }}>
-                    LinkVerse
+                    BioVerse
                   </span>
                 </div>
                 <h1 style={{ fontFamily: "'DM Sans', 'Inter', sans-serif", fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 800, color: '#1a1a2e', lineHeight: 1.15 }}>
-                  Customize your LinkVerse
+                  Customize your BioVerse
                 </h1>
                 <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '6px' }}>
                   Your Linktree alternative — one link, everything you are.

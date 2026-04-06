@@ -48,7 +48,7 @@ export default async function DashboardPage() {
       status: 'Ready',
     },
     {
-      name: 'LinkVerse',
+      name: 'BioVerse',
       description: 'Your personal link page. One link for everything.',
       href: '/dashboard/your-space',
       icon: <Rocket size={24} />,
@@ -77,8 +77,8 @@ export default async function DashboardPage() {
         {/* Global System Alert Banner */}
         {platformSettings.globalAlert?.active && (
           <div className={`p-5 md:p-6 mb-12 border-l-4 overflow-hidden relative group transition-all duration-500 animate-in slide-in-from-top-4 ${platformSettings.globalAlert.level === 'critical' ? 'border-crimson bg-crimson/[0.08] text-crimson shadow-lg shadow-crimson/10' :
-              platformSettings.globalAlert.level === 'warning' ? 'border-amber-500 bg-amber-500/5 text-amber-500' :
-                'border-warm-white/20 bg-warm-white/5 text-warm-white'
+            platformSettings.globalAlert.level === 'warning' ? 'border-amber-500 bg-amber-500/5 text-amber-500' :
+              'border-warm-white/20 bg-warm-white/5 text-warm-white'
             }`}>
             <div className="flex items-start gap-5 md:gap-8 relative z-10">
               <div className="pt-1">
