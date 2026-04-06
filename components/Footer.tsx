@@ -27,9 +27,6 @@ export default function Footer() {
             <Link href="/" className="text-3xl font-display font-bold tracking-tighter text-white">
               thedipverse<span className="text-white/40">.</span>
             </Link>
-            <p className="text-xl text-zinc-400 font-medium tracking-tight leading-relaxed">
-              &quot;Engineering the workflows of next-generation creators.&quot;
-            </p>
           </div>
 
           <div className="flex flex-col items-center md:items-end gap-8">

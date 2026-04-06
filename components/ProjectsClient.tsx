@@ -7,6 +7,13 @@ import Link from 'next/link';
 export default function ProjectsPage() {
   const allProjects = [
     {
+      title: "thedipverse — Creator Tools Platform",
+      description: "Full-stack platform with AI script generation, smart link engine, custom auth, and creator dashboard. Built and shipped solo.",
+      stack: ["Next.js 15", "MongoDB", "NextAuth", "Groq AI"],
+      status: "LIVE",
+      href: "https://thedipverse.vercel.app"
+    },
+    {
       title: "PROJECT: ACCIO INDIA",
       description: "Founder Venture: An India-centric procurement & buying ecosystem for modern builders and creators. Simplifying supply-chain for the Dip Builds audience.",
       stack: ["Next.js", "Supabase", "Logistics-API"],
@@ -21,7 +28,7 @@ export default function ProjectsPage() {
       href: "/dashboard/script-lab"
     },
     {
-      title: "PROJECT: AI-CRM-AGENT",
+      title: "CRM System",
       description: "Predictive engagement engine for automated CRM workflows using custom LLM embedding layers.",
       stack: ["Ollama", "Python", "LangChain"],
       status: "NDA",
@@ -35,9 +42,9 @@ export default function ProjectsPage() {
       href: "#"
     },
     {
-      title: "PROJECT: GOV-CORE",
-      description: "High-compliance digital infrastructure engineered for government-scale public operations.",
-      stack: ["Next.js", "PostgreSQL", "AWS-Gov"],
+      title: "P2P File Transfer App",
+      description: "High-compliance digital infrastructure built for secure peer-to-peer data transfers.",
+      stack: ["Next.js", "PostgreSQL", "WebRTC"],
       status: "NDA",
       href: "#"
     },
@@ -56,18 +63,11 @@ export default function ProjectsPage() {
       href: "#"
     },
     {
-      title: "PROJECT: OMNI-COMMERCE",
+      title: "E-commerce Platform",
       description: "Enterprise e-commerce systems with complex checkout logic and content engagement layers.",
       stack: ["Next.js", "Stripe", "Prisma"],
       status: "NDA",
       href: "#"
-    },
-    {
-      title: "The Studio Hub",
-      description: "Complete full-stack ecosystem designed for modern creators and builders.",
-      stack: ["Typescript", "Motion", "NexthAuth"],
-      status: "LIVE",
-      href: "/"
     }
   ];
 
@@ -119,26 +119,35 @@ export default function ProjectsPage() {
                     )}
                     {p.status === 'FOUNDER-VENTURE' && <Rocket size={14} className="text-blue-400 animate-bounce" />}
                   </div>
-                  {p.status !== 'NDA' ? (
+                  {p.status === 'NDA' ? (
+                    <Lock size={18} className="text-muted opacity-30" />
+                  ) : p.href === '#' ? (
+                    <span className="text-[10px] font-mono tracking-widest text-muted/50 uppercase cursor-not-allowed border border-muted/20 px-2 py-1">In Progress</span>
+                  ) : (
                     <Link href={p.href}>
                       <ArrowUpRight size={22} className="text-muted group-hover:text-warm-white transition-colors" />
                     </Link>
-                  ) : (
-                    <Lock size={18} className="text-muted opacity-30" />
                   )}
                 </div>
 
-                <div className="aspect-video bg-background/80 relative overflow-hidden group-hover:border-crimson/20 border border-warm-white/5 transition-all flex items-center justify-center p-8">
+                <div className="aspect-video bg-[#050505] relative overflow-hidden group-hover:border-crimson/20 border border-warm-white/5 transition-all flex flex-col items-center justify-center p-8 text-center">
                   {p.status === 'NDA' ? (
                     <div className="text-center space-y-4 opacity-20 group-hover:opacity-40 transition-opacity">
-                      <ShieldCheck size={60} strokeWidth={0.5} />
+                      <ShieldCheck size={60} strokeWidth={0.5} className="mx-auto" />
                       <p className="mono text-[8px] uppercase tracking-[0.5em]">System Encrypted</p>
                     </div>
                   ) : (
-                    <div className="absolute inset-x-8 bottom-8 flex justify-between items-end border-b border-warm-white/5 pb-4 opacity-20 group-hover:opacity-50">
-                      <span className="mono text-[10px] uppercase tracking-widest">BUILD / 24</span>
-                      <span className="mono text-[10px] uppercase tracking-widest">EXP / {i + 1}</span>
-                    </div>
+                    <>
+                      <div className="flex-1 flex items-center justify-center pt-8">
+                          <p className="font-display text-xl text-white/40 italic font-medium tracking-tighter opacity-50 group-hover:opacity-100 transition-opacity">
+                              {p.title}
+                          </p>
+                      </div>
+                      <div className="w-full flex justify-between items-end border-b border-warm-white/5 pb-4 opacity-20 group-hover:opacity-50">
+                        <span className="mono text-[10px] uppercase tracking-widest">BUILD / 24</span>
+                        <span className="mono text-[10px] uppercase tracking-widest">EXP / {i + 1}</span>
+                      </div>
+                    </>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-br from-crimson/5 to-transparent pointer-events-none" />
                 </div>
@@ -177,7 +186,7 @@ export default function ProjectsPage() {
               <h2 className="text-sm font-sans font-bold uppercase tracking-widest text-warm-white">KNOWLEDGE ARCHIVE / TECHNICAL SPECIALIZATIONS</h2>
             </div>
             <p className="text-xs text-muted-foreground uppercase mono tracking-[0.2em] leading-relaxed max-w-2xl">
-              Engineering milestones and digital systems engineered for results across professional deployments.
+              Technical milestones and digital systems built for results across professional deployments.
             </p>
           </div>
 

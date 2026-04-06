@@ -39,7 +39,7 @@ const services = [
         id: '03',
         name: 'Smart Link Hub',
         tagline: 'Boost Engagement CTR',
-        desc: 'Increase your social conversion by 30%. Convert any URL into an "Open-in-App" intent link for Instagram, YouTube, and Spotify.',
+        desc: 'Increase your social conversion rate. Convert any URL into an "Open-in-App" intent link for Instagram, YouTube, and Spotify.',
         icon: <LinkIcon size={32} />,
         color: 'text-blue-400',
         border: 'border-blue-400/20 hover:border-blue-400/50',

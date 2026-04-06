@@ -6,9 +6,34 @@ import Link from 'next/link';
 
 export default function AboutPage() {
     const grindLog = [
-        { date: "APRIL 2026", event: "Automating the thedipverse studio. Every workflow is a system. Every edit is a rep." },
-        { date: "MARCH 2026", event: "Rebuilt Auth architecture from scratch. Full control over user data cycles." },
-        { date: "2025", event: "Focusing on the craft. Code by day, precision editing by night." }
+        { 
+            date: "JAN 2026", 
+            event: "First talking video posted.\n   Faced camera. Hit publish.\n   Hardest rep so far." 
+        },
+        { 
+            date: "2025", 
+            event: "Started thedipverse. First cinematic\n   post published. Code by day,\n   lens by night." 
+        },
+        { 
+            date: "2024/Q4", 
+            event: "Rebuilt auth from scratch.\n   Dropped Clerk. Full control\n   over user data." 
+        },
+        { 
+            date: "2024 — YT EXPERIMENTS", 
+            event: "Shot 3 formats. Ram Mandir\n   documentary, music sync, mukbang.\n   None published.\n   Learned: format fit > grit alone." 
+        },
+        { 
+            date: "2024/Q3", 
+            event: "Started documenting the build.\n   thedipverse born." 
+        },
+        { 
+            date: "2023/Q2", 
+            event: "First cinematic project.\n   Movie scene + music sync edit.\n   Learned that pacing IS the story." 
+        },
+        { 
+            date: "2022-2023 — SCHOOL", 
+            event: "Built 3 meme pages.\n   Page 1: 1,700 followers.\n           1 reel hit 3M views.\n   Page 2: 8K followers.\n           16M single reel.\n           30M+ total reactions.\n   Sold 2. Deleted 1.\n   First lesson in organic growth." 
+        }
     ];
 
     const contentMilestones = [
@@ -39,8 +64,10 @@ export default function AboutPage() {
                     <div className="space-y-12">
                         <label className="mono text-crimson text-xs uppercase tracking-[0.5em]">001 — THE NARRATIVE</label>
                         <div className="space-y-10 font-display text-4xl md:text-6xl text-warm-white leading-[1.1] text-left">
-                            <p>Engineering <br /> High-Retention Content.</p>
-                            <p className="text-muted italic text-2xl md:text-3xl leading-relaxed">Building systems that drive engagement through deep technical logic and visual storytelling.</p>
+                            <p>Building <br /> High-Retention Content.</p>
+                            <p className="text-muted italic text-2xl md:text-[2rem] leading-snug">
+                                &quot;Started making content in school. Ran 3 pages — one hit 3M on a single reel with 1,700 followers. Another scaled to 8K and 30M+ reactions. Sold both. Deleted one. Didn&apos;t know it then, but that was the real education.&quot;
+                            </p>
                         </div>
                         <div className="pt-20 border-t border-crimson/20">
                             <blockquote className="font-display text-4xl md:text-7xl text-warm-white leading-none">
@@ -56,7 +83,7 @@ export default function AboutPage() {
                             {grindLog.map((log, i) => (
                                 <div key={i} className="space-y-3">
                                     <span className="mono text-[10px] text-crimson font-bold uppercase tracking-widest">[{log.date}]</span>
-                                    <p className="text-sm text-muted italic leading-relaxed lowercase">
+                                    <p className="text-sm text-muted italic leading-relaxed whitespace-pre-wrap">
                                         // {log.event}
                                     </p>
                                 </div>
@@ -66,21 +93,29 @@ export default function AboutPage() {
                                 <span className="mono text-[10px] text-emerald-500 uppercase tracking-widest font-bold">System Online: Building in Public.</span>
                             </div>
 
-                            {/* Content Milestones */}
+                            {/* Real Education Milestones */}
                             <div className="space-y-8 pt-6">
-                                <h4 className="font-display text-2xl text-warm-white tracking-tighter">Content & Scale</h4>
-                                <div className="grid grid-cols-1 gap-6">
-                                    {contentMilestones.map((item, i) => (
-                                        <div key={i} className="flex gap-6 items-center">
-                                            <div className="font-display text-4xl text-crimson/80 font-bold w-24 shrink-0">
-                                                {item.stat}
-                                            </div>
-                                            <div>
-                                                <h5 className="mono text-[10px] text-warm-white uppercase tracking-widest mb-1">{item.label}</h5>
-                                                <p className="text-xs text-muted italic">{item.desc}</p>
-                                            </div>
-                                        </div>
-                                    ))}
+                                <div className="space-y-6 pt-4">
+                                    <div className="space-y-2">
+                                        <div className="font-display text-5xl text-crimson font-bold">3</div>
+                                        <h5 className="mono text-[10px] text-warm-white uppercase tracking-widest">
+                                            Meme Pages Built
+                                        </h5>
+                                    </div>
+                                    
+                                    <div className="space-y-1 py-4 border-y border-warm-white/10">
+                                        <p className="font-display text-2xl md:text-3xl text-warm-white italic">1 reel. 1,700 followers. 3M views.</p>
+                                        <p className="mono text-[10px] text-muted uppercase tracking-widest pt-2">
+                                            Content quality over follower count.
+                                        </p>
+                                    </div>
+
+                                    <div className="space-y-1">
+                                        <p className="text-sm md:text-base text-warm-white">Sold 2. Deleted 1.</p>
+                                        <p className="mono text-[10px] text-muted uppercase tracking-widest pt-1">
+                                            Kept the lessons.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

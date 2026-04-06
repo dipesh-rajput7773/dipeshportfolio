@@ -25,7 +25,7 @@ export default function Home() {
                                 &nbsp;&nbsp;core_logic: [<span className="text-blue-400">&quot;Next.js&quot;</span>, <span className="text-emerald-400">&quot;FastAPI&quot;</span>, <span className="text-purple-400">&quot;n8n&quot;</span>],<br />
                                 &nbsp;&nbsp;visual_engine: [<span className="text-cyan-400">&quot;DaVinci Resolve&quot;</span>, <span className="text-pink-400">&quot;Color Grading&quot;</span>],<br />
                                 &nbsp;&nbsp;mission: <span className="text-warm-white/40">&quot;High-retention systems for modern creators&quot;</span>,<br />
-                                &nbsp;&nbsp;status: <span className="text-emerald-500 hover:animate-pulse cursor-pointer">&quot;Ready for new deployments&quot;</span><br />
+                                &nbsp;&nbsp;status: <span className="text-emerald-500 hover:animate-pulse cursor-pointer">&quot;Currently building ScriptLab + OurVerse&quot;</span><br />
                                 {'}'};
                             </code>
                         </div>
@@ -144,41 +144,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* 04 — Community Proof (Social Proof) */}
-            <section className="max-w-7xl mx-auto px-6 py-40 space-y-20 border-t border-warm-white/5">
-                <div className="space-y-4">
-                    <label className="mono text-crimson text-xs uppercase tracking-[0.5em] font-bold">004 — FEEDBACK</label>
-                    <h3 className="text-4xl md:text-6xl font-display tracking-tighter leading-tight text-warm-white">The word from <br /><span className="text-muted italic">other builders.</span></h3>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10">
-                    {[
-                        {
-                            name: "Editorial Creator",
-                            text: "The Script Lab saved me 3 hours on my last project. The hooks are actually good, not just generic AI filler.",
-                            role: "YouTube Strategist"
-                        },
-                        {
-                            name: "Startup Founder",
-                            text: "Professional, sharp, and systems-driven. Built our entire content pipeline in a week.",
-                            role: "SaaS Builder"
-                        }
-                    ].map((review, i) => (
-                        <div key={i} className="p-12 border border-warm-white/5 bg-warm-white/[0.01] space-y-8 group hover:border-crimson/20 transition-all">
-                            <div className="flex items-center gap-1 text-crimson">
-                                {[1, 2, 3, 4, 5].map(star => <Sparkles key={star} size={12} fill="currentColor" />)}
-                            </div>
-                            <p className="text-xl md:text-2xl font-display text-warm-white leading-relaxed italic opacity-80 group-hover:opacity-100 transition-opacity">
-                                &quot;{review.text}&quot;
-                            </p>
-                            <div className="pt-6 border-t border-warm-white/5 flex items-center justify-between">
-                                <span className="mono text-[10px] uppercase tracking-widest text-warm-white">{review.name}</span>
-                                <span className="mono text-[10px] uppercase tracking-widest text-muted">{review.role}</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </section>
 
             {/* 04 — Unified Final Call */}
             <section className="py-40 text-center border-t border-warm-white/5 bg-gradient-to-b from-transparent to-crimson/[0.02]">
@@ -193,15 +158,10 @@ export default function Home() {
                         progress.
                     </h2>
                     <div className="flex flex-col md:flex-row gap-12 justify-center items-center pt-20">
-                        {['Email', 'Instagram', 'LinkedIn', 'YouTube'].map(link => (
-                            <Link
-                                key={link}
-                                href="#"
-                                className="mono text-[10px] uppercase tracking-[0.4em] text-muted hover:text-crimson transition-all active:scale-95"
-                            >
-                                [ {link} ]
-                            </Link>
-                        ))}
+                        {/* Real Social Links */}
+                        <a href="mailto:thevisualdip@gmail.com" className="mono text-[10px] uppercase tracking-[0.4em] text-muted hover:text-crimson transition-all active:scale-95">[ Email ]</a>
+                        <a href="https://instagram.com/thedipverse" target="_blank" className="mono text-[10px] uppercase tracking-[0.4em] text-muted hover:text-crimson transition-all active:scale-95">[ Instagram ]</a>
+                        <a href="https://instagram.com/dip_builds" target="_blank" className="mono text-[10px] uppercase tracking-[0.4em] text-muted hover:text-crimson transition-all active:scale-95">[ Dev Instagram ]</a>
                     </div>
                 </div>
             </section>
