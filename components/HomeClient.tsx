@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { ArrowUpRight, Sparkles, Zap, Terminal, ShieldCheck, Film } from 'lucide-react';
+import { ArrowUpRight, Sparkles, Zap, Terminal, ShieldCheck, Film, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Home() {
@@ -145,7 +145,100 @@ export default function Home() {
             </section>
 
 
-            {/* 04 — Unified Final Call */}
+            {/* 04 — Work With Me / Services */}
+            <section className="max-w-7xl mx-auto px-6 py-40 space-y-20 border-t border-warm-white/5">
+                <div className="flex flex-col md:flex-row justify-between items-end gap-8">
+                    <div className="space-y-4">
+                        <label className="mono text-crimson text-xs uppercase tracking-[0.5em] font-bold">004 — WORK WITH ME</label>
+                        <h3 className="text-5xl md:text-8xl font-display tracking-tighter leading-none">Let&apos;s Build <br /><span className="text-crimson italic">Something.</span></h3>
+                    </div>
+                    <p className="mono text-sm text-muted max-w-xs leading-relaxed">
+                        // Select the service you need. Every project is scoped, quoted, and delivered end-to-end.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-warm-white/5">
+                    {/* Card 1: Video Editing */}
+                    <div className="group bg-[#050505] p-10 md:p-14 space-y-8 hover:bg-[#0a0a0a] transition-all duration-500 border border-transparent hover:border-crimson/20">
+                        <div className="flex items-center justify-between">
+                            <div className="p-3 bg-crimson/10 border border-crimson/20 rounded">
+                                <Film size={22} className="text-crimson" />
+                            </div>
+                            <span className="mono text-[10px] text-warm-white/20 uppercase tracking-widest">01</span>
+                        </div>
+                        <div className="space-y-3">
+                            <h4 className="font-display text-3xl text-warm-white tracking-tighter">Cinematic Editing</h4>
+                            <p className="mono text-xs text-muted leading-relaxed">
+                                Reels, brand films, YouTube edits, and color grading in DaVinci Resolve. Built for scroll-stopping retention.
+                            </p>
+                        </div>
+                        <ul className="space-y-2">
+                            {['Instagram & YouTube Reels', 'Color Grading & LUTs', 'Brand Film Production', 'Script-to-Screen'].map(f => (
+                                <li key={f} className="mono text-[10px] text-warm-white/40 flex items-center gap-2">
+                                    <span className="w-1 h-1 bg-crimson rounded-full flex-shrink-0" />{f}
+                                </li>
+                            ))}
+                        </ul>
+                        <Link href="/contact" className="mono text-[10px] uppercase tracking-widest text-crimson flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Start a Project <ArrowRight size={12} />
+                        </Link>
+                    </div>
+
+                    {/* Card 2: Automation */}
+                    <div className="group bg-[#050505] p-10 md:p-14 space-y-8 hover:bg-[#0a0a0a] transition-all duration-500 border border-transparent hover:border-amber-500/20">
+                        <div className="flex items-center justify-between">
+                            <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded">
+                                <Zap size={22} className="text-amber-500" />
+                            </div>
+                            <span className="mono text-[10px] text-warm-white/20 uppercase tracking-widest">02</span>
+                        </div>
+                        <div className="space-y-3">
+                            <h4 className="font-display text-3xl text-warm-white tracking-tighter">Automation Systems</h4>
+                            <p className="mono text-xs text-muted leading-relaxed">
+                                n8n workflows, e-commerce backend automation, API integrations, and end-to-end business process automation.
+                            </p>
+                        </div>
+                        <ul className="space-y-2">
+                            {['n8n Workflow Design', 'E-commerce Automation', 'API & Webhook Integrations', 'Order & Inventory Systems'].map(f => (
+                                <li key={f} className="mono text-[10px] text-warm-white/40 flex items-center gap-2">
+                                    <span className="w-1 h-1 bg-amber-500 rounded-full flex-shrink-0" />{f}
+                                </li>
+                            ))}
+                        </ul>
+                        <Link href="/contact" className="mono text-[10px] uppercase tracking-widest text-amber-500 flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Start a Project <ArrowRight size={12} />
+                        </Link>
+                    </div>
+
+                    {/* Card 3: Full-Stack Dev */}
+                    <div className="group bg-[#050505] p-10 md:p-14 space-y-8 hover:bg-[#0a0a0a] transition-all duration-500 border border-transparent hover:border-emerald-500/20">
+                        <div className="flex items-center justify-between">
+                            <div className="p-3 bg-emerald-500/10 border border-emerald-500/20 rounded">
+                                <Terminal size={22} className="text-emerald-500" />
+                            </div>
+                            <span className="mono text-[10px] text-warm-white/20 uppercase tracking-widest">03</span>
+                        </div>
+                        <div className="space-y-3">
+                            <h4 className="font-display text-3xl text-warm-white tracking-tighter">Full-Stack Dev</h4>
+                            <p className="mono text-xs text-muted leading-relaxed">
+                                Next.js apps, custom dashboards, SaaS tools, REST APIs, and MongoDB/PostgreSQL backends. Production-ready.
+                            </p>
+                        </div>
+                        <ul className="space-y-2">
+                            {['Next.js & React Applications', 'Custom Dashboards & Tools', 'REST API Development', 'SaaS & Admin Panels'].map(f => (
+                                <li key={f} className="mono text-[10px] text-warm-white/40 flex items-center gap-2">
+                                    <span className="w-1 h-1 bg-emerald-500 rounded-full flex-shrink-0" />{f}
+                                </li>
+                            ))}
+                        </ul>
+                        <Link href="/contact" className="mono text-[10px] uppercase tracking-widest text-emerald-500 flex items-center gap-2 group-hover:gap-4 transition-all">
+                            Start a Project <ArrowRight size={12} />
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* 05 — Unified Final Call */}
             <section className="py-40 text-center border-t border-warm-white/5 bg-gradient-to-b from-transparent to-crimson/[0.02]">
                 <div className="space-y-12">
                     <div className="flex justify-center">

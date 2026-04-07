@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import AuthProvider from '@/components/AuthProvider';
 import MaintenanceGuard from '@/components/MaintenanceGuard';
+import DipAI from '@/components/DipAI';
 
 
 const inter = Inter({
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </MaintenanceGuard>
           <Footer />
+          <DipAI />
         </AuthProvider>
       </body>
     </html>
