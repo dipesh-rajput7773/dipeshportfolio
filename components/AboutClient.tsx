@@ -15,24 +15,20 @@ export default function AboutPage() {
             event: "Started thedipverse. First cinematic\n   post published. Code by day,\n   lens by night." 
         },
         { 
-            date: "2024/Q4", 
-            event: "Rebuilt auth from scratch.\n   Dropped Clerk. Full control\n   over user data." 
-        },
-        { 
-            date: "2024 — YT EXPERIMENTS", 
+            date: "2024", 
             event: "Shot 3 formats. Ram Mandir\n   documentary, music sync, mukbang.\n   None published.\n   Learned: format fit > grit alone." 
         },
         { 
-            date: "2024/Q3", 
-            event: "Started documenting the build.\n   thedipverse born." 
+            date: "2023", 
+            event: "Built final meme page.\n   1,700 followers.\n   1 reel hit 3M views.\n   Left the meme space to build real skills." 
         },
         { 
-            date: "2023/Q2", 
-            event: "First cinematic project.\n   Movie scene + music sync edit.\n   Learned that pacing IS the story." 
+            date: "2021", 
+            event: "Started 2 meme pages.\n   Hit 30M views on a single reel.\n   Sold both for ₹5K.\n   The first real taste of scale." 
         },
         { 
-            date: "2022-2023 — SCHOOL", 
-            event: "Built 3 meme pages.\n   Page 1: 1,700 followers.\n           1 reel hit 3M views.\n   Page 2: 8K followers.\n           16M single reel.\n           30M+ total reactions.\n   Sold 2. Deleted 1.\n   First lesson in organic growth." 
+            date: "2018", 
+            event: "Uploaded first YouTube video.\n   The initial spark." 
         }
     ];
 
@@ -65,8 +61,8 @@ export default function AboutPage() {
                         <label className="mono text-crimson text-xs uppercase tracking-[0.5em]">001 — THE NARRATIVE</label>
                         <div className="space-y-10 font-display text-4xl md:text-6xl text-warm-white leading-[1.1] text-left">
                             <p>Building <br /> High-Retention Content.</p>
-                            <p className="text-muted italic text-2xl md:text-[2rem] leading-snug">
-                                &quot;Started making content in school. Ran 3 pages — one hit 3M on a single reel with 1,700 followers. Another scaled to 8K and 30M+ reactions. Sold both. Deleted one. Didn&apos;t know it then, but that was the real education.&quot;
+                            <p className="text-muted italic text-xl md:text-[1.8rem] leading-snug">
+                                &quot;Posted my first YouTube video in 2018. Started social media properly in 2021 by running two meme pages, generating a 30M+ view reel and selling both for 5K. Built a final page in 2023 to 1,700 followers and 3M+ views before launching thedipverse in 2025. Didn&apos;t know it then, but that was the real education.&quot;
                             </p>
                         </div>
                         <div className="pt-20 border-t border-crimson/20">
@@ -104,14 +100,14 @@ export default function AboutPage() {
                                     </div>
                                     
                                     <div className="space-y-1 py-4 border-y border-warm-white/10">
-                                        <p className="font-display text-2xl md:text-3xl text-warm-white italic">1 reel. 1,700 followers. 3M views.</p>
+                                        <p className="font-display text-2xl md:text-3xl text-warm-white italic">30M+ views reel. Sold for ₹5K.</p>
                                         <p className="mono text-[10px] text-muted uppercase tracking-widest pt-2">
                                             Content quality over follower count.
                                         </p>
                                     </div>
 
                                     <div className="space-y-1">
-                                        <p className="text-sm md:text-base text-warm-white">Sold 2. Deleted 1.</p>
+                                        <p className="text-sm md:text-base text-warm-white">The real education in organic growth.</p>
                                         <p className="mono text-[10px] text-muted uppercase tracking-widest pt-1">
                                             Kept the lessons.
                                         </p>

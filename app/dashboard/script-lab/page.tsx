@@ -33,7 +33,7 @@ export default function ScriptLabPage() {
           scale: 3, // High Res
           useCORS: true, 
           backgroundColor: '#080808' 
-        });
+        } as any);
         const link = document.createElement('a');
         link.download = `slide_0${slide.slide_number}_${profile.username || 'thedipverse'}.png`;
         link.href = canvas.toDataURL('image/png');
@@ -47,7 +47,7 @@ export default function ScriptLabPage() {
   useEffect(() => {
     async function fetchProfile() {
       try {
-        const res = await fetch('/api/your-space');
+        const res = await fetch('/api/bioverse');
         if (res.ok) {
           const data = await res.json();
           setProfile(data.space);
@@ -128,8 +128,8 @@ export default function ScriptLabPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 pt-8 md:pt-12 border-t border-warm-white/5">
-            {/* Results Side - High Priority on Mobile */}
-            <section className="space-y-10 lg:space-y-12 order-1 lg:order-2">
+            {/* Results Side */}
+            <section className="space-y-10 lg:space-y-12 order-2">
                 <div className="space-y-2">
                     <h2 className="text-xl md:text-2xl font-display font-bold italic tracking-tight">Engine Result.</h2>
                     <p className="mono text-[8px] md:text-[10px] text-muted uppercase tracking-widest leading-relaxed">// Analyzed, synthesized, and ready for impact.</p>
@@ -252,9 +252,9 @@ export default function ScriptLabPage() {
                                     </div>
                                     <div className="space-y-4 border-t border-warm-white/5 pt-6">
                                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                                            <label className="mono text-[8px] md:text-[10px] text-muted uppercase tracking-widest">Caption & Archive</label>
-                                            <div className="flex gap-4">
-                                                <button onClick={() => copyToClipboard(result.caption + "\n\n" + result.hashtags.join(" "))} className="p-3 border border-warm-white/10 text-muted hover:text-white transition-all"><Copy size={16}/></button>
+                                            <label className="mono text-[8px] md:text-[10px] text-muted uppercase tracking-widest leading-normal">Caption & Archive</label>
+                                            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                                                <button onClick={() => copyToClipboard(result.caption + "\n\n" + result.hashtags.join(" "))} className="p-3 border border-warm-white/10 text-muted hover:text-white transition-all flex justify-center"><Copy size={16}/></button>
                                                 <button 
                                                     onClick={downloadAllSlides} 
                                                     disabled={isExporting}
@@ -274,7 +274,7 @@ export default function ScriptLabPage() {
             </section>
 
             {/* Input Side */}
-            <section className="space-y-10 lg:space-y-12 order-2 lg:order-1">
+            <section className="space-y-10 lg:space-y-12 order-1">
                 <div className="space-y-2">
                     <h2 className="text-xl md:text-2xl font-display font-bold italic tracking-tight">System Input.</h2>
                     <p className="mono text-[8px] md:text-[10px] text-muted uppercase tracking-widest leading-relaxed">// Engineering viral context through logic.</p>
@@ -450,10 +450,10 @@ export default function ScriptLabPage() {
                                         ))}
                                     </div>
                                     <div className="space-y-4">
-                                        <div className="flex justify-between items-center">
+                                        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
                                             <label className="mono text-[10px] text-muted uppercase tracking-widest">Caption & Tags</label>
-                                            <div className="flex gap-4">
-                                                <button onClick={() => copyToClipboard(result.caption + "\n\n" + result.hashtags.join(" "))} className="text-muted hover:text-white transition-all"><Copy size={16}/></button>
+                                            <div className="flex flex-col sm:flex-row gap-4">
+                                                <button onClick={() => copyToClipboard(result.caption + "\n\n" + result.hashtags.join(" "))} className="text-muted hover:text-white transition-all p-3 border border-warm-white/10 sm:border-none flex justify-center"><Copy size={16}/></button>
                                                 <button 
                                                     onClick={downloadAllSlides} 
                                                     disabled={isExporting}

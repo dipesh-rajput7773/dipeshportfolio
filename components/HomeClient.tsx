@@ -74,11 +74,11 @@ export default function Home() {
                     <div className="min-h-[580px] md:min-h-[720px] bg-surface relative overflow-hidden group border border-warm-white/5 hover:border-crimson/30 transition-all duration-700 shadow-2xl shadow-crimson/5">
                         <iframe
                             src="https://www.instagram.com/p/DRC3HW1D5Fn/embed/"
-                            className="w-full h-[580px] md:h-[720px] border-none pointer-events-auto grayscale group-hover:grayscale-0 transition-all duration-1000"
+                            className="w-full h-[580px] md:h-[720px] border-none pointer-events-auto grayscale-0 md:grayscale group-hover:grayscale-0 transition-all duration-1000"
                             allowFullScreen={true}
                             scrolling="no"
                         />
-                        <div className="absolute top-6 left-6 pointer-events-none opacity-0 group-hover:opacity-100 transition-all">
+                        <div className="absolute top-6 left-6 pointer-events-none opacity-100 md:opacity-0 group-hover:opacity-100 transition-all">
                             <div className="p-3 bg-black/80 backdrop-blur-md border border-crimson/40 text-crimson mono text-[9px] uppercase tracking-widest font-bold">
                                 SYNCING — CINEMATIC_REALITY
                             </div>

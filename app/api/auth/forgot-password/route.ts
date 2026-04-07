@@ -31,13 +31,13 @@ export async function POST(req: Request) {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASSWORD,
             },
         });
 
         await transporter.sendMail({
-            from: `"thedipverse" <${process.env.EMAIL_USER}>`,
+            from: `"thedipverse" <${process.env.SMTP_USER}>`,
             to: user.email,
             subject: 'Reset your password — thedipverse',
             html: `

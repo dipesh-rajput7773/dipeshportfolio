@@ -100,7 +100,7 @@ export default function YourSpaceEditor() {
     async function fetchData() {
       setIsLoading(true);
       try {
-        const res = await fetch('/api/your-space');
+        const res = await fetch('/api/bioverse');
         if (res.ok) {
           const data = await res.json();
           if (data.space) {
@@ -140,7 +140,7 @@ export default function YourSpaceEditor() {
   const handleSave = async () => {
     setIsSaving(true);
     try {
-      const res = await fetch('/api/your-space', {
+      const res = await fetch('/api/bioverse', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...profile, links })
@@ -167,7 +167,7 @@ export default function YourSpaceEditor() {
       <main className="min-h-screen bg-[#f8f7ff] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="w-10 h-10 rounded-full border-4 border-purple-200 border-t-purple-600 animate-spin" />
-          <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-gray-500 text-sm">Loading your space...</p>
+          <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-gray-500 text-sm">Loading your BioVerse...</p>
         </div>
       </main>
     );
@@ -202,11 +202,11 @@ export default function YourSpaceEditor() {
                 <div className="flex items-center gap-2 mb-1">
                   <Sparkles size={16} className="text-purple-500" />
                   <span style={{ fontFamily: "'Inter', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '0.12em', color: '#8b5cf6', textTransform: 'uppercase' }}>
-                    Your Space
+                    BioVerse
                   </span>
                 </div>
                 <h1 style={{ fontFamily: "'DM Sans', 'Inter', sans-serif", fontSize: 'clamp(1.6rem, 4vw, 2.4rem)', fontWeight: 800, color: '#1a1a2e', lineHeight: 1.15 }}>
-                  Customize your Space
+                  Customize your BioVerse
                 </h1>
                 <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '6px' }}>
                   Your Linktree alternative — one link, everything you are.
@@ -262,7 +262,7 @@ export default function YourSpaceEditor() {
             <div style={{ background: '#fff', borderRadius: '20px', border: '1.5px solid #e5e7eb', overflow: 'hidden', boxShadow: '0 2px 24px rgba(0,0,0,0.06)' }}>
 
               {/* Tabs */}
-              <div style={{ display: 'flex', borderBottom: '1.5px solid #f3f4f6', padding: '0 24px' }}>
+              <div style={{ display: 'flex', borderBottom: '1.5px solid #f3f4f6', padding: '0 24px', overflowX: 'auto', whiteSpace: 'nowrap' }}>
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
@@ -367,7 +367,7 @@ export default function YourSpaceEditor() {
                       </div>
 
                       {/* Username + Display Name */}
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#374151', marginBottom: '8px' }}>
                             Username <span style={{ color: '#ef4444' }}>*</span>
@@ -477,7 +477,7 @@ export default function YourSpaceEditor() {
                                 {link.url ? getIconForUrl(link.url) : <Link2 size={14} />}
                               </div>
 
-                              <div style={{ flex: 1, display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '10px' }}>
+                              <div className="flex flex-col sm:grid sm:grid-cols-[1fr_1.5fr] gap-2 flex-1">
                                 <input
                                   type="text"
                                   value={link.title}

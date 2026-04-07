@@ -48,9 +48,9 @@ export default async function DashboardPage() {
       status: 'Ready',
     },
     {
-      name: 'Your Space',
+      name: 'BioVerse',
       description: 'Your personal link page. One link for everything.',
-      href: '/dashboard/your-space',
+      href: '/dashboard/bioverse',
       icon: <Rocket size={24} />,
       status: 'Ready',
     },

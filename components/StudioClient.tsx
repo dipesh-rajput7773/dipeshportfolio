@@ -29,7 +29,7 @@ const services = [
         color: 'text-amber-500',
         border: 'border-amber-500/20 hover:border-amber-500/50',
         bg: 'bg-amber-500/[0.03]',
-        link: '/dashboard/your-space',
+        link: '/dashboard/bioverse',
         status: 'Live',
         statusColor: 'text-emerald-400',
         freeNote: 'Login required',

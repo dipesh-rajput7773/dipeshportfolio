@@ -73,7 +73,7 @@ export default async function AnalyticsDashboard() {
               </span>
             </div>
             <h1 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(1.6rem,4vw,2.2rem)', fontWeight: 800, color: '#1a1a2e', lineHeight: 1.15, margin: 0 }}>
-              Your Space Performance
+              BioVerse Performance
             </h1>
             <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '6px' }}>
               See how visitors interact with your link page at{' '}
@@ -108,7 +108,7 @@ export default async function AnalyticsDashboard() {
           </div>
 
           {/* Bar Chart + Top Links */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: '20px' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-5">
 
             {/* 7-day bar chart */}
             <div style={{ background: '#fff', borderRadius: '18px', padding: '24px', border: '1.5px solid #e5e7eb', boxShadow: '0 2px 16px rgba(0,0,0,0.04)' }}>

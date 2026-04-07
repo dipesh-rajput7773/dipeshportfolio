@@ -103,7 +103,8 @@ export async function POST(req: Request) {
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt }
       ],
-      model: 'llama-3.1-70b-versatile',
+      // Using qwen3-32b temporarily as llama-3.3-70b-versatile is blocked by project limits
+      model: 'qwen/qwen3-32b',
       response_format: { type: 'json_object' }
     });
 
@@ -131,6 +132,9 @@ export async function POST(req: Request) {
 
   } catch (error: any) {
     console.error('Groq Engine Error:', error);
-    return NextResponse.json({ error: 'AI processing failed. Check your API key or try again.' }, { status: 500 });
+    
+    // Surface the actual error message from Groq if it's a permissions/model block error
+    const errorMessage = error?.error?.error?.message || error?.message || 'AI processing failed. Check your API key or try again.';
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
