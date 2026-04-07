@@ -30,6 +30,7 @@ const SpaceSchema = new mongoose.Schema({
     url: String,
     icon: String, // Lucide icon name
     isMusic: Boolean, // New field for Spotify/YT Music
+    appScheme: String, // Deep-link URI to open native app (e.g. instagram://user?username=xxx)
   }],
   musicConfig: {
     platform: String, // 'spotify' | 'ytmusic'

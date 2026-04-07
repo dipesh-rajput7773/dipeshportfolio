@@ -16,6 +16,7 @@ interface LinkItem {
   title: string;
   url: string;
   icon?: string;
+  appScheme?: string; // Deep-link URI to open native app (e.g. instagram://user?username=xxx)
 }
 
 // Background presets - user-friendly, NOT cinematic
@@ -262,7 +263,7 @@ export default function YourSpaceEditor() {
             <div style={{ background: '#fff', borderRadius: '20px', border: '1.5px solid #e5e7eb', overflow: 'hidden', boxShadow: '0 2px 24px rgba(0,0,0,0.06)' }}>
 
               {/* Tabs */}
-              <div style={{ display: 'flex', borderBottom: '1.5px solid #f3f4f6', padding: '0 24px', overflowX: 'auto', whiteSpace: 'nowrap' }}>
+              <div style={{ display: 'flex', borderBottom: '1.5px solid #f3f4f6', padding: '0 8px', flexWrap: 'wrap', gap: '4px' }}>
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
@@ -271,7 +272,7 @@ export default function YourSpaceEditor() {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '7px',
-                      padding: '16px 20px',
+                      padding: '12px 16px',
                       fontSize: '13px',
                       fontWeight: activeTab === tab.id ? 700 : 500,
                       color: activeTab === tab.id ? '#7c3aed' : '#6b7280',
@@ -281,6 +282,9 @@ export default function YourSpaceEditor() {
                       border: 'none',
                       cursor: 'pointer',
                       transition: 'all 0.2s',
+                      whiteSpace: 'nowrap',
+                      minWidth: 0,
+                      flexShrink: 0,
                     }}
                   >
                     {tab.icon}
@@ -465,51 +469,82 @@ export default function YourSpaceEditor() {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, x: -20 }}
                               style={{
-                                display: 'flex', alignItems: 'center', gap: '12px',
                                 padding: '16px', borderRadius: '14px',
                                 border: '1.5px solid #e5e7eb', background: '#fafafa'
                               }}
                             >
-                              <GripVertical size={16} color="#d1d5db" style={{ flexShrink: 0, cursor: 'grab' }} />
+                              {/* Top row: drag + icon + inputs + delete */}
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <GripVertical size={16} color="#d1d5db" style={{ flexShrink: 0, cursor: 'grab' }} />
 
-                              {/* Link icon preview */}
-                              <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: currentBg.value, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: currentBg.text }}>
-                                {link.url ? getIconForUrl(link.url) : <Link2 size={14} />}
+                                {/* Link icon preview */}
+                                <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: currentBg.value, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: currentBg.text }}>
+                                  {link.url ? getIconForUrl(link.url) : <Link2 size={14} />}
+                                </div>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1, minWidth: 0 }}>
+                                  <input
+                                    type="text"
+                                    value={link.title}
+                                    onChange={(e) => handleLinkChange(index, 'title', e.target.value)}
+                                    placeholder="Link title (eg: Instagram)"
+                                    style={{
+                                      width: '100%', padding: '9px 12px', borderRadius: '8px',
+                                      border: '1.5px solid #e5e7eb', fontSize: '13px',
+                                      outline: 'none', color: '#1a1a2e', background: '#fff',
+                                      boxSizing: 'border-box'
+                                    }}
+                                    className="focus:border-purple-400"
+                                  />
+                                  <input
+                                    type="url"
+                                    value={link.url}
+                                    onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
+                                    placeholder="https://... (website fallback)"
+                                    style={{
+                                      width: '100%', padding: '9px 12px', borderRadius: '8px',
+                                      border: '1.5px solid #e5e7eb', fontSize: '13px',
+                                      outline: 'none', color: '#1a1a2e', background: '#fff',
+                                      boxSizing: 'border-box'
+                                    }}
+                                    className="focus:border-purple-400"
+                                  />
+                                </div>
+
+                                <button
+                                  onClick={() => handleRemoveLink(index)}
+                                  style={{ padding: '8px', borderRadius: '8px', border: 'none', background: '#fee2e2', color: '#ef4444', cursor: 'pointer', display: 'flex', flexShrink: 0, transition: 'all 0.2s' }}
+                                >
+                                  <Trash2 size={14} />
+                                </button>
                               </div>
 
-                              <div className="flex flex-col sm:grid sm:grid-cols-[1fr_1.5fr] gap-2 flex-1">
+                              {/* App Scheme Row */}
+                              <div style={{ marginTop: '10px', paddingLeft: '62px' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '5px' }}>
+                                  <span style={{ fontSize: '11px', fontWeight: 600, color: '#6b7280' }}>📱 Open in App (optional)</span>
+                                  <span style={{
+                                    fontSize: '10px', padding: '2px 7px', borderRadius: '20px',
+                                    background: '#f3e8ff', color: '#7c3aed', fontWeight: 600
+                                  }}>Deep Link</span>
+                                </div>
                                 <input
                                   type="text"
-                                  value={link.title}
-                                  onChange={(e) => handleLinkChange(index, 'title', e.target.value)}
-                                  placeholder="Link title (eg: Instagram)"
+                                  value={link.appScheme || ''}
+                                  onChange={(e) => handleLinkChange(index, 'appScheme', e.target.value)}
+                                  placeholder="e.g. instagram://user?username=johndoe"
                                   style={{
-                                    padding: '9px 12px', borderRadius: '8px',
-                                    border: '1.5px solid #e5e7eb', fontSize: '13px',
-                                    outline: 'none', color: '#1a1a2e', background: '#fff'
+                                    width: '100%', padding: '8px 12px', borderRadius: '8px',
+                                    border: '1.5px solid #e5e7eb', fontSize: '12px',
+                                    outline: 'none', color: '#374151', background: '#fff',
+                                    boxSizing: 'border-box', fontFamily: 'monospace'
                                   }}
                                   className="focus:border-purple-400"
                                 />
-                                <input
-                                  type="url"
-                                  value={link.url}
-                                  onChange={(e) => handleLinkChange(index, 'url', e.target.value)}
-                                  placeholder="https://..."
-                                  style={{
-                                    padding: '9px 12px', borderRadius: '8px',
-                                    border: '1.5px solid #e5e7eb', fontSize: '13px',
-                                    outline: 'none', color: '#1a1a2e', background: '#fff'
-                                  }}
-                                  className="focus:border-purple-400"
-                                />
+                                <p style={{ fontSize: '11px', color: '#9ca3af', marginTop: '4px' }}>
+                                  If filled: opens the native app when installed, falls back to website URL.
+                                </p>
                               </div>
-
-                              <button
-                                onClick={() => handleRemoveLink(index)}
-                                style={{ padding: '8px', borderRadius: '8px', border: 'none', background: '#fee2e2', color: '#ef4444', cursor: 'pointer', display: 'flex', flexShrink: 0, transition: 'all 0.2s' }}
-                              >
-                                <Trash2 size={14} />
-                              </button>
                             </motion.div>
                           ))}
                         </AnimatePresence>

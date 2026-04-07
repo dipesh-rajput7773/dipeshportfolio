@@ -113,6 +113,8 @@ export default async function PublicSpacePage(props: {
           backdrop-filter: blur(12px);
           -webkit-backdrop-filter: blur(12px);
           letter-spacing: 0.01em;
+          cursor: pointer;
+          text-align: left;
         }
 
         .link-btn:hover {
@@ -269,19 +271,19 @@ export default async function PublicSpacePage(props: {
 
           {/* Links */}
           <section className="stagger" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            {(space.links as { title: string; url: string; icon?: string }[]).map((link, i) => {
+            {(space.links as { title: string; url: string; icon?: string; appScheme?: string }[]).map((link, i) => {
               const finalUrl = `/api/redirect?url=${encodeURIComponent(link.url)}&spaceId=${space._id}&userId=${space.userId}&linkTitle=${encodeURIComponent(link.title)}`;
               const icon = getIconForUrl(link.url);
 
               return (
-                <a
+                <button
                   key={i}
-                  href={finalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  data-url={finalUrl}
+                  data-app-scheme={link.appScheme || ''}
                   id={`link-${i}-${link.title.toLowerCase().replace(/\s+/g, '-')}`}
                   className={`link-btn ${!isDark ? 'link-btn-dark' : ''}`}
                   style={{ color: theme.text }}
+                  onClick={undefined}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{
@@ -295,7 +297,7 @@ export default async function PublicSpacePage(props: {
                     <span style={{ fontWeight: 700, fontSize: '14px' }}>{link.title}</span>
                   </div>
                   <ArrowUpRight size={16} style={{ opacity: 0.6, flexShrink: 0 }} />
-                </a>
+                </button>
               );
             })}
 
@@ -317,6 +319,39 @@ export default async function PublicSpacePage(props: {
           </footer>
         </div>
       </main>
+
+      {/* Deep-link handler: try app scheme → fallback to web URL */}
+      <script dangerouslySetInnerHTML={{ __html: `
+        (function() {
+          document.querySelectorAll('.link-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              var appScheme = btn.getAttribute('data-app-scheme') || '';
+              var webUrl   = btn.getAttribute('data-url') || '';
+              if (!webUrl) return;
+
+              if (appScheme) {
+                // Try opening the native app.
+                // After 1.5 s, if the page is still visible, fall back to the website.
+                var fallbackTimer = setTimeout(function() {
+                  window.open(webUrl, '_blank', 'noopener,noreferrer');
+                }, 1500);
+
+                // Navigating away (app opened) cancels the document's focus state;
+                // detect it and cancel the fallback timer.
+                window.addEventListener('blur', function onBlur() {
+                  clearTimeout(fallbackTimer);
+                  window.removeEventListener('blur', onBlur);
+                }, { once: true });
+
+                window.location.href = appScheme;
+              } else {
+                window.open(webUrl, '_blank', 'noopener,noreferrer');
+              }
+            });
+          });
+        })();
+      ` }} />
     </>
   );
 }
