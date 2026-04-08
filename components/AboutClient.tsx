@@ -103,13 +103,28 @@ export default function AboutPage() {
                         <div className="space-y-10 font-display text-4xl md:text-6xl text-warm-white leading-[1.1] text-left">
                             <p>Architecting <br /> <span className="text-crimson mt-2 block">Attention.</span></p>
                             <p className="text-muted italic text-xl md:text-[1.8rem] leading-snug">
-                                &quot;Operating at the absolute edge of code, commerce, and cinema. What started as cracking social media algorithms has evolved into building full-scale automated infrastructures. thedipverse is the pure manifestation of deep engineering logic colliding with high-retention visual storytelling.&quot;
+                                &quot;I&apos;m Dipesh Rajput—a Full-Stack Developer and Cinematic Editor. For me, code and cinema are the exact same discipline: stripping away the noise until only the essential impact remains. I build scalable Next.js backend architectures, and I pair them with high-retention visual storytelling to create ultimate digital leverage.&quot;
                             </p>
                         </div>
                         <div className="pt-20 border-t border-crimson/20">
-                            <blockquote className="font-display text-4xl md:text-[4.5rem] text-warm-white leading-tight tracking-tighter">
-                                &quot;Code the Backend.<br/><span className="text-crimson">Film the Frontend.</span>&quot;
-                            </blockquote>
+                            <div className="relative rounded-2xl overflow-hidden border border-warm-white/10 group aspect-video shadow-2xl">
+                                <img
+                                    src="/images/cinema-code.png"
+                                    alt="Cinema x Code Studio"
+                                    className="w-full h-full object-cover opacity-60"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-black/50 to-transparent flex flex-col justify-end p-8 md:p-12 pointer-events-none">
+                                    <blockquote className="font-display text-4xl md:text-[4.5rem] text-warm-white leading-tight tracking-tighter">
+                                        &quot;Code the Backend.<br/><span className="text-crimson italic">Film the Frontend.</span>&quot;
+                                    </blockquote>
+                                    <div className="flex items-center gap-4 mt-6">
+                                        <div className="h-px bg-crimson w-12" />
+                                        <p className="mono text-[10px] uppercase tracking-widest text-crimson font-bold">
+                                            The Convergence Point
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

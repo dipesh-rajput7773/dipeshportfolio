@@ -23,10 +23,6 @@ export default function DipAI() {
     const [loading, setLoading] = useState(false);
     const [listening, setListening] = useState(false);
     const [voiceEnabled, setVoiceEnabled] = useState(false);
-    const [showPhone, setShowPhone] = useState(false);
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [calling, setCalling] = useState(false);
-    const [callStatus, setCallStatus] = useState('');
     const [isTyping, setIsTyping] = useState(false);
 
     const bottomRef = useRef<HTMLDivElement>(null);
@@ -44,6 +40,41 @@ export default function DipAI() {
             setTimeout(() => inputRef.current?.focus(), 300);
         }
     }, [isOpen]);
+
+    // Global Wake Word Listener ("Hey Jarvis")
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (!SpeechRecognition) return;
+
+        const recognizer = new SpeechRecognition();
+        recognizer.continuous = true;
+        recognizer.interimResults = true;
+        recognizer.lang = 'en-US';
+
+        recognizer.onresult = (e: any) => {
+            const current = e.resultIndex;
+            const transcript = e.results[current][0].transcript.toLowerCase();
+            if (transcript.includes('hey jarvis') || transcript.includes('jarvis') || transcript.includes('jarvish')) {
+                setIsOpen(true);
+            }
+        };
+
+        // Start listening after first user interaction to bypass browser restrictions
+        const startListening = () => {
+             try { recognizer.start(); } catch(err) {} 
+             window.removeEventListener('click', startListening);
+             window.removeEventListener('keydown', startListening);
+        };
+        window.addEventListener('click', startListening);
+        window.addEventListener('keydown', startListening);
+
+        return () => {
+            window.removeEventListener('click', startListening);
+            window.removeEventListener('keydown', startListening);
+            try { recognizer.stop(); } catch(err) {}
+        };
+    }, []);
 
     const sendMessage = async (text: string) => {
         if (!text.trim()) return;
@@ -109,38 +140,10 @@ export default function DipAI() {
         setListening(true);
     };
 
-    const handleCall = async () => {
-        if (!phoneNumber.trim() || phoneNumber.length < 10) {
-            setCallStatus('Enter a valid phone number.');
-            return;
-        }
-        setCalling(true);
-        setCallStatus('Initiating call...');
-
-        // VAPI.ai outbound call — requires Vapi API key
-        try {
-            const res = await fetch('/api/dipai/call', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phoneNumber }),
-            });
-            const data = await res.json();
-            if (data.success) {
-                setCallStatus(`✓ DIP-AI is calling ${phoneNumber}. Pick up!`);
-            } else {
-                setCallStatus(data.error || 'Call failed. Check Vapi configuration.');
-            }
-        } catch {
-            setCallStatus('Call system offline. Email: thevisualdip@gmail.com');
-        } finally {
-            setCalling(false);
-        }
-    };
-
     return (
         <>
             {/* Floating Orb */}
-            <div className="fixed bottom-6 right-6 z-[100]">
+            <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[100]">
                 <AnimatePresence>
                     {!isOpen && (
                         <motion.button
@@ -173,7 +176,7 @@ export default function DipAI() {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 40, scale: 0.95 }}
                             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                            className="w-[360px] max-h-[600px] flex flex-col bg-[#050505] border border-warm-white/10 rounded-xl shadow-2xl shadow-black/60 overflow-hidden"
+                            className="w-[calc(100vw-32px)] sm:w-[360px] max-h-[80vh] sm:max-h-[600px] flex flex-col bg-[#050505] border border-warm-white/10 rounded-xl shadow-2xl shadow-black/60 overflow-hidden origin-bottom-right"
                         >
                             {/* Header */}
                             <div className="bg-[#0d0d0d] border-b border-warm-white/10 px-4 py-3 flex items-center gap-3">
@@ -195,14 +198,6 @@ export default function DipAI() {
                                         {voiceEnabled ? <Volume2 size={14} /> : <VolumeX size={14} />}
                                     </button>
                                     <button
-                                        onClick={() => setShowPhone(p => !p)}
-                                        className={`p-1.5 rounded transition-all ${showPhone ? 'text-emerald-400' : 'text-warm-white/30 hover:text-warm-white/60'}`}
-                                        title="Call me via DIP-AI"
-                                        id="dipai-phone-toggle"
-                                    >
-                                        <Phone size={14} />
-                                    </button>
-                                    <button
                                         onClick={() => setIsOpen(false)}
                                         className="p-1.5 text-warm-white/30 hover:text-warm-white/60 transition-all"
                                         id="dipai-close-btn"
@@ -211,44 +206,6 @@ export default function DipAI() {
                                     </button>
                                 </div>
                             </div>
-
-                            {/* Phone Call Panel */}
-                            <AnimatePresence>
-                                {showPhone && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: 'auto', opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        className="border-b border-warm-white/10 bg-[#080808] overflow-hidden"
-                                    >
-                                        <div className="px-4 py-3 space-y-3">
-                                            <p className="mono text-[10px] text-emerald-400 uppercase tracking-widest">// DIP-AI Voice Call</p>
-                                            <p className="mono text-[10px] text-warm-white/40 leading-relaxed">Enter your number. DIP-AI will call you and answer any questions about our services.</p>
-                                            <div className="flex gap-2">
-                                                <input
-                                                    type="tel"
-                                                    value={phoneNumber}
-                                                    onChange={e => setPhoneNumber(e.target.value)}
-                                                    placeholder="+91 98765 43210"
-                                                    className="flex-1 bg-[#111] border border-warm-white/10 text-warm-white text-xs mono px-3 py-2 rounded focus:outline-none focus:border-emerald-500/50 placeholder:text-warm-white/20"
-                                                    id="dipai-phone-input"
-                                                />
-                                                <button
-                                                    onClick={handleCall}
-                                                    disabled={calling}
-                                                    className="px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 mono text-[10px] uppercase tracking-widest rounded hover:bg-emerald-500/20 transition-all disabled:opacity-50"
-                                                    id="dipai-call-btn"
-                                                >
-                                                    {calling ? '...' : 'Call'}
-                                                </button>
-                                            </div>
-                                            {callStatus && (
-                                                <p className="mono text-[10px] text-warm-white/50">{callStatus}</p>
-                                            )}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
 
                             {/* Messages */}
                             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 min-h-[200px] max-h-[380px]">

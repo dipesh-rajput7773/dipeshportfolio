@@ -519,32 +519,7 @@ export default function YourSpaceEditor() {
                                 </button>
                               </div>
 
-                              {/* App Scheme Row */}
-                              <div style={{ marginTop: '10px', paddingLeft: '62px' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '5px' }}>
-                                  <span style={{ fontSize: '11px', fontWeight: 600, color: '#6b7280' }}>📱 Open in App (optional)</span>
-                                  <span style={{
-                                    fontSize: '10px', padding: '2px 7px', borderRadius: '20px',
-                                    background: '#f3e8ff', color: '#7c3aed', fontWeight: 600
-                                  }}>Deep Link</span>
-                                </div>
-                                <input
-                                  type="text"
-                                  value={link.appScheme || ''}
-                                  onChange={(e) => handleLinkChange(index, 'appScheme', e.target.value)}
-                                  placeholder="e.g. instagram://user?username=johndoe"
-                                  style={{
-                                    width: '100%', padding: '8px 12px', borderRadius: '8px',
-                                    border: '1.5px solid #e5e7eb', fontSize: '12px',
-                                    outline: 'none', color: '#374151', background: '#fff',
-                                    boxSizing: 'border-box', fontFamily: 'monospace'
-                                  }}
-                                  className="focus:border-purple-400"
-                                />
-                                <p style={{ fontSize: '11px', color: '#9ca3af', marginTop: '4px' }}>
-                                  If filled: opens the native app when installed, falls back to website URL.
-                                </p>
-                              </div>
+
                             </motion.div>
                           ))}
                         </AnimatePresence>

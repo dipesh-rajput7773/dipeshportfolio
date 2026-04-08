@@ -21,10 +21,10 @@ export default function Home() {
                             <code className="text-crimson/60 text-xs block mb-6 mono font-bold uppercase tracking-widest">// studio_workflow.config.ts</code>
                             <code className="text-warm-white/80 text-sm mono leading-relaxed space-y-1 block">
                                 <span className="text-crimson">export const</span> <span className="text-white">StudioProfile</span> = {'{'}<br />
-                                &nbsp;&nbsp;role: <span className="text-amber-500 italic">&quot;Full-Stack Developer & Video Editor&quot;</span>,<br />
+                                &nbsp;&nbsp;role: <span className="text-amber-500 italic">&quot;Developer & Content Creator&quot;</span>,<br />
                                 &nbsp;&nbsp;core_logic: [<span className="text-blue-400">&quot;Next.js&quot;</span>, <span className="text-emerald-400">&quot;FastAPI&quot;</span>, <span className="text-purple-400">&quot;n8n&quot;</span>],<br />
-                                &nbsp;&nbsp;visual_engine: [<span className="text-cyan-400">&quot;DaVinci Resolve&quot;</span>, <span className="text-pink-400">&quot;Color Grading&quot;</span>],<br />
-                                &nbsp;&nbsp;mission: <span className="text-warm-white/40">&quot;High-retention systems for modern creators&quot;</span>,<br />
+                                &nbsp;&nbsp;visual_engine: [<span className="text-cyan-400">&quot;Cinematography&quot;</span>, <span className="text-pink-400">&quot;Video Editing&quot;</span>],<br />
+                                &nbsp;&nbsp;mission: <span className="text-warm-white/40">&quot;Shipping clean code & striking visuals&quot;</span>,<br />
                                 &nbsp;&nbsp;status: <span className="text-emerald-500 hover:animate-pulse cursor-pointer">&quot;Currently building ScriptLab + OurVerse&quot;</span><br />
                                 {'}'};
                             </code>
@@ -37,11 +37,11 @@ export default function Home() {
                             <label className="mono text-crimson text-xs uppercase tracking-[0.5em] font-bold">EDITOR & CODER PORTFOLIO</label>
                             <h1 className="text-5xl md:text-[8rem] font-display font-medium tracking-tighter leading-[0.85] text-warm-white">
                                 Code. <br />
-                                <span className="italic">Cinematic.</span>
+                                <span className="italic">Leverage.</span>
                             </h1>
                         </div>
                         <p className="mono text-muted text-sm tracking-tight leading-relaxed max-w-lg lowercase md:text-md">
-                            // Building robust full-stack applications and high-impact visual narratives. Bridging the gap between engineering and storytelling.
+                            // Building robust full-stack applications and cracking social growth algorithms. Pure engineering and digital leverage.
                         </p>
                         <div className="flex flex-wrap gap-6 pt-6">
                             <Link href="/projects" className="px-10 py-5 bg-crimson text-white text-xs mono font-bold uppercase tracking-widest transition-all hover:bg-black hover:ring-1 hover:ring-crimson shadow-xl shadow-crimson/10">
@@ -128,13 +128,13 @@ export default function Home() {
                         </div>
                     </div>
 
-                    {/* LENS Side */}
+                    {/* CREATION Side */}
                     <div className="p-12 md:p-16 group hover:bg-white/2 transition-all space-y-10">
                         <h4 className="mono text-emerald-500 text-xl flex items-center gap-4">
-                            <Film size={18} /> VISUALS
+                            <Film size={18} /> CONTENT & CINEMA
                         </h4>
                         <div className="flex flex-wrap gap-4">
-                            {['DaVinci Resolve', 'Color Grading', 'CapCut', 'Figma', 'Cinematic Shoots', 'Scripting', 'Storytelling'].map(skill => (
+                            {['Content Creation', 'Video Editing', 'Cinematography', 'Creative Direction', 'Figma', 'Storytelling', 'Post-Production'].map(skill => (
                                 <span key={skill} className="px-5 py-3 bg-warm-white/5 text-[10px] mono uppercase tracking-widest text-muted-foreground group-hover:text-emerald-400 border border-warm-white/5 group-hover:border-emerald-400/20 transition-all">
                                     {skill}
                                 </span>
@@ -167,13 +167,13 @@ export default function Home() {
                             <span className="mono text-[10px] text-warm-white/20 uppercase tracking-widest">01</span>
                         </div>
                         <div className="space-y-3">
-                            <h4 className="font-display text-3xl text-warm-white tracking-tighter">Cinematic Editing</h4>
+                            <h4 className="font-display text-3xl text-warm-white tracking-tighter">Content & Cinema</h4>
                             <p className="mono text-xs text-muted leading-relaxed">
-                                Reels, brand films, YouTube edits, and color grading in DaVinci Resolve. Built for scroll-stopping retention.
+                                Professional video editing, original content creation, and cinematic shoots. Bringing your brand&apos;s story to life on screen.
                             </p>
                         </div>
                         <ul className="space-y-2">
-                            {['Instagram & YouTube Reels', 'Color Grading & LUTs', 'Brand Film Production', 'Script-to-Screen'].map(f => (
+                            {['Cinematography & Shoots', 'Modern Video Editing', 'Content Strategy & Creation', 'Platform-Specific Uploads'].map(f => (
                                 <li key={f} className="mono text-[10px] text-warm-white/40 flex items-center gap-2">
                                     <span className="w-1 h-1 bg-crimson rounded-full flex-shrink-0" />{f}
                                 </li>
